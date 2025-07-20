@@ -2,9 +2,9 @@ name: Smart Contract CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, master]
   pull_request:
-    branches: [main]
+    branches: [main, master]
 
 jobs:
   build-and-test:
@@ -14,7 +14,7 @@ jobs:
       - name: 🧾 Checkout code
         uses: actions/checkout@v3
 
-      - name: 🟢 Set up Node.js v20
+      - name: 🟢 Use Node.js v20
         uses: actions/setup-node@v3
         with:
           node-version: 20
@@ -28,7 +28,8 @@ jobs:
       - name: 🧪 Run full test suite
         run: npx hardhat test
 
-      - name: 📊 Gas reporter (optional)
+      - name: 📊 Run gas reporting (optional)
+        if: always()
         run: |
           if [ -f hardhat.config.ts ] || [ -f hardhat.config.js ]; then
             npx hardhat test --network hardhat

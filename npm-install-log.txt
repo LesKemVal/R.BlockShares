@@ -1,0 +1,33 @@
+npm error code ERESOLVE
+npm error ERESOLVE unable to resolve dependency tree
+npm error
+npm error While resolving: @settlemint/solidity-token-erc20-crowdsale@7.12.8
+npm error Found: hardhat@2.24.0
+npm error node_modules/hardhat
+npm error   hardhat@"2.24.0" from the root project
+npm error   peer hardhat@"^2.11.0" from @nomicfoundation/hardhat-toolbox@6.0.0
+npm error   node_modules/@nomicfoundation/hardhat-toolbox
+npm error     @nomicfoundation/hardhat-toolbox@"*" from the root project
+npm error   4 more (@nomicfoundation/hardhat-chai-matchers, ...)
+npm error
+npm error Could not resolve dependency:
+npm error peer hardhat@"^2.24.1" from @nomicfoundation/hardhat-verify@2.0.14
+npm error node_modules/@nomicfoundation/hardhat-verify
+npm error   peer @nomicfoundation/hardhat-verify@"^2.0.0" from @nomicfoundation/hardhat-toolbox@6.0.0
+npm error   node_modules/@nomicfoundation/hardhat-toolbox
+npm error     @nomicfoundation/hardhat-toolbox@"*" from the root project
+npm error   peer @nomicfoundation/hardhat-verify@"^2.0.1" from @nomicfoundation/hardhat-ignition@0.15.12
+npm error   node_modules/@nomicfoundation/hardhat-ignition
+npm error     peer @nomicfoundation/hardhat-ignition@"^0.15.12" from @nomicfoundation/hardhat-ignition-ethers@0.15.13
+npm error     node_modules/@nomicfoundation/hardhat-ignition-ethers
+npm error       peer @nomicfoundation/hardhat-ignition-ethers@"^0.15.0" from @nomicfoundation/hardhat-toolbox@6.0.0
+npm error       node_modules/@nomicfoundation/hardhat-toolbox
+npm error
+npm error Fix the upstream dependency conflict, or retry
+npm error this command with --force or --legacy-peer-deps
+npm error to accept an incorrect (and potentially broken) dependency resolution.
+npm error
+npm error
+npm error For a full report see:
+npm error /home/coder/.npm/_logs/2025-06-30T12_52_50_722Z-eresolve-report.txt
+npm error A complete log of this run can be found in: /home/coder/.npm/_logs/2025-06-30T12_52_50_722Z-debug-0.log
