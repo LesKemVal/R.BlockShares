@@ -1,80 +1,75 @@
-# R.BlockShares
+# R.BlockShares – BusinessFranchiseToken Smart Contract Repo
 
-A Tokenization Platform for compliant business franchise investments.
-
----
-
-## Overview
-
-This repository includes the `BusinessFranchiseToken` smart contract and supporting deployment and test files intended to meet the Kore protocol’s compliance and audit framework.
-
-- **Smart Contract:** `contracts/core/BusinessFranchiseToken.sol`  
-  Implements a capped ERC20 token with:
-  - Role-based access control
-  - Configurable funding rounds
-  - Bonding curve pricing
-  - Investor rollover logic for unfilled rounds
-
-- **Deployment Script:** `scripts/deploy-business.ts`  
-  Automates deployment using environment-configurable parameters.
-
-- **Test Script:** `test/test-full.ts`  
-  Simulates investor flows, funding logic, rollover mechanics, and fee distribution scenarios to reflect real-world use cases.
-
-- **Network:** Sepolia testnet (for testing); prepared for mainnet deployment pending Kore review.
+This repository contains smart contracts for a tokenized franchise ownership model prepared for KoreConX compliance review. The architecture supports compliant issuance, investor onboarding, and franchise management workflows using security token standards.
 
 ---
 
-## Kore Compliance Notes
+## 🔑 Token Standard and Structure
 
-- The contract supports roles for:
-  - **KoreOperator**
-  - **WhitelistManager**
-  - **TokenDistributor**
-  
-- Designed for Kore auditing, the logic anticipates:
-  - Investor eligibility enforcement
-  - Success fee handling
-  - Project rollover/reallocation if funding fails
-  - Access-controlled distributions and withdrawals
+- **Primary Token Type:** Custom ERC-1404/3643-like security token.
+- **Compliance Logic:** Transfer restrictions, identity checks, and permissioned functions are modular and adjustable for regulators across jurisdictions.
+- **Token Use Case:** Represents fractional ownership or rights within a franchise business model, with custom issuance and rollover logic.
+- **Custom Features:** 
+  - On-chain role assignment
+  - Lifecycle management
+  - Secondary trading controls
+  - Controlled minting and burning
 
 ---
 
-## Getting Started
+## 🧑‍🤝‍🧑 Roles & Permissions
 
-1. Configure your `.env` file with token name, symbol, funding dates, wallets, caps, and pricing:
-    ```dotenv
-    TOKEN_NAME="BlockShares Token"
-    TOKEN_SYMBOL="BST"
-    FUNDING_START=...
-    FUNDING_END=...
-    ```
-2. Deploy to Sepolia:
-    ```bash
-    npx hardhat run scripts/deploy-business.ts --network sepolia
-    ```
+| Role        | Description                                                                 |
+|-------------|-----------------------------------------------------------------------------|
+| **Franchisor** | Token issuer with full permissions (create tokens, assign franchisees, manage compliance, initiate rollovers). |
+| **Franchisee** | Whitelisted recipient of tokens; limited to compliant transfer and access. May require KYC/AML verification. |
+| **Investor**   | Third-party entity allowed to purchase or hold tokens post-onboarding.   |
 
-3. Run full tests:
-    ```bash
-    npx hardhat test test/test-full.ts
-    ```
+Roles are managed using OpenZeppelin’s `Ownable` and potential RBAC (role-based access control) extensions.
 
 ---
 
-## Contribution & Audit Access
+## 🗳️ Governance Logic
 
-- This repository is publicly visible at:  
-  🔗 [https://github.com/LesKemVal/R.BlockShares](https://github.com/LesKemVal/R.BlockShares)
-
-- For Kore or third-party reviewers:
-  - Clone the repository
-  - Review `contracts/core/`, `scripts/`, and `test/` directories
-  - Submit issues or pull requests if notes are enabled
-
-> To request write access or comment permissions, please contact the owner at **[your email or GitHub username here]**.
+- **RolloverManager.sol** handles fundraising stage transitions.
+- Admin-controlled permissions allow:
+  - Locking/unlocking transfers
+  - Modifying cap limits
+  - Executing rollover into new token rounds
+- Governance is not decentralized in this version but can integrate with DAO modules if needed.
 
 ---
 
-## License
+## 🔄 KoreChain Integration Context
 
-MIT License. See `LICENSE` for terms and conditions.
+- Contracts prepared for KoreConX UI-based issuance and lifecycle workflows.
+- Future alignment with KoreChain modules like:
+  - KYC identity registry
+  - Transfer agent controls
+  - Whitelisted primary/secondary offerings
+- External API hooks for investor registration and smart contract updates are planned.
+- Smart contracts support KoreConX’s compliance-first approach, including R34 token-style transfer checks.
+
+---
+
+## 📦 Smart Contracts Included
+
+- `BusinessFranchiseToken.sol`: (ERC-1404-style token with enhanced compliance logic)
+- `CreateToken.sol`: Token instantiation contract with initialization safeguards.
+- `CreateTokenFactory.sol`: Factory pattern for creating multiple franchise tokens.
+- `RolloverManager.sol`: Handles logic for transitioning from one fundraising round to the next.
+
+---
+
+## 🧪 Development Stack
+
+- **Solidity Version:** ^0.8.20
+- **Framework:** Hardhat
+- **Scripting Language:** TypeScript
+- **Testing:** Mocha + Chai via `npx hardhat test`
+- **Linting:** solhint + .solhint.json
+
+---
+
+## 📁 Repo Structure
+
