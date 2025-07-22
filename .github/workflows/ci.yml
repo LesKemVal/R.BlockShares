@@ -1,36 +1,29 @@
-name: Smart Contract CI
+name: Hardhat CI
 
 on:
   push:
-    branches: [main, master]
+    branches: [ main ]
   pull_request:
-    branches: [main, master]
+    branches: [ main ]
 
 jobs:
-  build-and-test:
+  test:
     runs-on: ubuntu-latest
 
     steps:
       - name: 🧾 Checkout code
         uses: actions/checkout@v3
 
-      - name: 🟢 Use Node.js v20
+      - name: 🟨 Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: '20'
 
-      - name: 📦 Install dependencies (with legacy peer deps)
-        run: npm install --legacy-peer-deps
+      - name: 📦 Install dependencies
+        run: npm ci
 
-      - name: 🔨 Compile smart contracts
+      - name: 🔨 Compile contracts
         run: npx hardhat compile
 
-      - name: 🧪 Run full test suite
+      - name: 🧪 Run tests
         run: npx hardhat test
-
-      - name: 📊 Run gas reporting (optional)
-        if: always()
-        run: |
-          if [ -f hardhat.config.ts ] || [ -f hardhat.config.js ]; then
-            npx hardhat test --network hardhat
-          fi
