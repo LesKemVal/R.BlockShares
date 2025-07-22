@@ -1,75 +1,48 @@
-# R.BlockShares – BusinessFranchiseToken Smart Contract Repo
+# 🏢 Business Franchise Token (BFTKN)
 
-This repository contains smart contracts for a tokenized franchise ownership model prepared for KoreConX compliance review. The architecture supports compliant issuance, investor onboarding, and franchise management workflows using security token standards.
+A Kore-compliant ERC-20 smart contract for managing tokenized franchise ownership and investor participation under regulated frameworks.
 
----
-
-## 🔑 Token Standard and Structure
-
-- **Primary Token Type:** Custom ERC-1404/3643-like security token.
-- **Compliance Logic:** Transfer restrictions, identity checks, and permissioned functions are modular and adjustable for regulators across jurisdictions.
-- **Token Use Case:** Represents fractional ownership or rights within a franchise business model, with custom issuance and rollover logic.
-- **Custom Features:** 
-  - On-chain role assignment
-  - Lifecycle management
-  - Secondary trading controls
-  - Controlled minting and burning
+This project is designed for franchise issuers using a self-serve platform to tokenize equity or debt, enforce investor compliance, and handle lifecycle events such as minting, pausing, fees, rollover, and secondary readiness.
 
 ---
 
-## 🧑‍🤝‍🧑 Roles & Permissions
+## ✅ Features
 
-| Role        | Description                                                                 |
-|-------------|-----------------------------------------------------------------------------|
-| **Franchisor** | Token issuer with full permissions (create tokens, assign franchisees, manage compliance, initiate rollovers). |
-| **Franchisee** | Whitelisted recipient of tokens; limited to compliant transfer and access. May require KYC/AML verification. |
-| **Investor**   | Third-party entity allowed to purchase or hold tokens post-onboarding.   |
-
-Roles are managed using OpenZeppelin’s `Ownable` and potential RBAC (role-based access control) extensions.
-
----
-
-## 🗳️ Governance Logic
-
-- **RolloverManager.sol** handles fundraising stage transitions.
-- Admin-controlled permissions allow:
-  - Locking/unlocking transfers
-  - Modifying cap limits
-  - Executing rollover into new token rounds
-- Governance is not decentralized in this version but can integrate with DAO modules if needed.
+- ✅ Kore-compliant role architecture
+- ✅ Whitelist-based minting enforcement
+- ✅ Bonding curve pricing toggle (with permanent lock)
+- ✅ Flexible minting fees: full or partial
+- ✅ Fee exemptions (admin/owner)
+- ✅ Pausable contract (emergency admin control)
+- ✅ Investor token burn + rollover support
+- ✅ Automated funding window (30 days from deploy)
+- ✅ Deployment + full test suite
 
 ---
 
-## 🔄 KoreChain Integration Context
+## 🧠 Roles Defined
 
-- Contracts prepared for KoreConX UI-based issuance and lifecycle workflows.
-- Future alignment with KoreChain modules like:
-  - KYC identity registry
-  - Transfer agent controls
-  - Whitelisted primary/secondary offerings
-- External API hooks for investor registration and smart contract updates are planned.
-- Smart contracts support KoreConX’s compliance-first approach, including R34 token-style transfer checks.
+| Role             | Description                                      |
+|------------------|--------------------------------------------------|
+| `owner`          | Deployer, fee-exempt, full admin rights          |
+| `koreOperator`   | Compliance/whitelist administrator               |
+| `whitelisted`    | Approved addresses allowed to mint or invest     |
 
----
-
-## 📦 Smart Contracts Included
-
-- `BusinessFranchiseToken.sol`: (ERC-1404-style token with enhanced compliance logic)
-- `CreateToken.sol`: Token instantiation contract with initialization safeguards.
-- `CreateTokenFactory.sol`: Factory pattern for creating multiple franchise tokens.
-- `RolloverManager.sol`: Handles logic for transitioning from one fundraising round to the next.
+> 🔒 All minting requires whitelist + valid funding window.
 
 ---
 
-## 🧪 Development Stack
+## ⚙️ .env Configuration
 
-- **Solidity Version:** ^0.8.20
-- **Framework:** Hardhat
-- **Scripting Language:** TypeScript
-- **Testing:** Mocha + Chai via `npx hardhat test`
-- **Linting:** solhint + .solhint.json
+Create a `.env` file in the root:
 
----
-
-## 📁 Repo Structure
-
+```ini
+PRIVATE_KEY=your_private_key
+SEPOLIA_RPC_URL=https://sepolia.infura.io/v3/your_project_id
+INITIAL_SUPPLY=1000000000000000000000
+CAP=5000000000000000000000
+PRICE=10000000000000
+TOKEN_NAME=BusinessFranchiseToken
+TOKEN_SYMBOL=BFTKN
+FUNDING_WALLET=0xYourFundingWallet
+PLATFORM_FEE_WALLET=0xYourFeeWallet

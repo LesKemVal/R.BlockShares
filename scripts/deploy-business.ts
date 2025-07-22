@@ -1,7 +1,5 @@
 import * as dotenv from "dotenv";
-import * as fs from "fs";
 import { ethers } from "hardhat";
-import path from "path";
 
 dotenv.config();
 
@@ -10,61 +8,41 @@ async function main() {
 
   console.log("🚀 Deploying contract with account:", deployer.address);
 
-  const initialSupply = ethers.parseUnits(
-    process.env.INITIAL_SUPPLY || "0",
-    18
-  );
-  const cap = ethers.parseUnits(process.env.CAP || "0", 18);
-  const price = ethers.parseUnits(process.env.PRICE || "0", 18);
+  const TOKEN_NAME = process.env.TOKEN_NAME || "FranchiseToken";
+  const TOKEN_SYMBOL = process.env.TOKEN_SYMBOL || "FTKN";
+  const INITIAL_SUPPLY = ethers.parseUnits("1000", 18); // 1000 tokens
+  const CAP = ethers.parseUnits("5000", 18); // 5000 token cap
+  const TOKEN_PRICE = ethers.parseUnits("0.01", "ether"); // 0.01 ETH per token
+  const FUNDING_WALLET = deployer.address;
+  const PLATFORM_FEE_WALLET = deployer.address;
 
-  const fundingWallet = process.env.FUNDING_WALLET || deployer.address;
-  const platformFeeWallet = process.env.PLATFORM_FEE_WALLET || deployer.address;
+  const now = Math.floor(Date.now() / 1000);
+  const FUNDING_START_TIME = now;
+  const FUNDING_END_TIME = now + 30 * 24 * 60 * 60; // 30 days
 
-  // Convert to numbers for timestamps
-  const fundingStart = Number(process.env.FUNDING_START || "0");
-  const fundingEnd = Number(process.env.FUNDING_END || "0");
+  const Token = await ethers.getContractFactory("BusinessFranchiseToken");
 
-  const tokenName = process.env.TOKEN_NAME || "MyToken";
-  const tokenSymbol = process.env.TOKEN_SYMBOL || "MTK";
-
-  const TokenFactory = await ethers.getContractFactory(
-    "BusinessFranchiseToken"
-  );
-
-  // Deploy contract with exactly 9 args matching constructor
-  const token = await TokenFactory.deploy(
-    tokenName,
-    tokenSymbol,
-    initialSupply,
-    cap,
-    price,
-    fundingWallet,
-    platformFeeWallet,
-    fundingStart,
-    fundingEnd
+  const contract = await Token.deploy(
+    TOKEN_NAME,
+    TOKEN_SYMBOL,
+    INITIAL_SUPPLY,
+    CAP,
+    TOKEN_PRICE,
+    FUNDING_WALLET,
+    PLATFORM_FEE_WALLET,
+    FUNDING_START_TIME,
+    FUNDING_END_TIME
   );
 
-  await token.waitForDeployment();
+  await contract.waitForDeployment();
 
-  console.log("✅ Token deployed to:", token.target);
-
-  // Optionally update .env TOKEN_ADDRESS with deployed address
-  const envPath = path.resolve(__dirname, "..", ".env");
-  let envFile = fs.readFileSync(envPath, "utf-8");
-  const tokenAddressKey = "TOKEN_ADDRESS";
-  const regex = new RegExp(`^${tokenAddressKey}=.*$`, "m");
-
-  if (regex.test(envFile)) {
-    envFile = envFile.replace(regex, `${tokenAddressKey}=${token.target}`);
-  } else {
-    envFile += `\n${tokenAddressKey}=${token.target}`;
-  }
-
-  fs.writeFileSync(envPath, envFile, "utf-8");
-  console.log("🔄 .env file updated with TOKEN_ADDRESS");
+  console.log(`✅ Contract deployed at: ${contract.target}`);
+  console.log(
+    `🕒 Funding window: ${new Date(FUNDING_START_TIME * 1000).toISOString()} to ${new Date(FUNDING_END_TIME * 1000).toISOString()}`
+  );
 }
 
-main().catch((error) => {
-  console.error("❌ Error deploying contract:", error);
+main().catch((err) => {
+  console.error("❌ Error deploying contract:", err.message || err);
   process.exit(1);
 });
