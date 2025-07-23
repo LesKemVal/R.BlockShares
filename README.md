@@ -88,7 +88,8 @@ Full Hardhat test run
 Git hooks via husky run tests before any commit.
 
 Documentation
-Live documentation (auto-deployed to GitHub Pages)
+Live documentation (auto-deployed to GitHub Pages):
+https://leskemval.github.io/R.BlockShares/
 
 ⚠️ Disclaimer
 This repository is for technical demonstration and integration testing.
