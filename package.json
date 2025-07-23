@@ -86,6 +86,10 @@
     "solidity-coverage": "^0.8.16",
     "ts-node": "^10.9.2",
     "typechain": "^8.3.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "husky": "^8.0.0"
+  },
+  "scripts": {
+    "prepare": "husky install"
   }
 }
