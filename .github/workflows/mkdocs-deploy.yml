@@ -18,15 +18,17 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: 📥 Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install mkdocs
-
       - name: 🔧 Configure Git for GitHub Pages
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
 
-      - name: 🚀 Deploy with MkDocs
-        run: mkdocs gh-deploy --force
+      - name: 📥 Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install mkdocs
+
+      - name: 🚀 Deploy with mkdocs
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: mkdocs gh-deploy --force --remote-name origin --remote-branch gh-pages
