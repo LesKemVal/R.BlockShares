@@ -32,3 +32,6 @@ cached/
 # System files
 .DS_Store
 site/
+venv/
+site/
+site_template/
