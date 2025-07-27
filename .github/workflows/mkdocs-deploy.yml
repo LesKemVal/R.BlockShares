@@ -1,17 +1,17 @@
-
-name: 🛠️ MkDocs Build Only
+name: 📘 MkDocs Build Check (No Deploy)
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📦 Checkout repo
+      - name: 📦 Checkout repository
         uses: actions/checkout@v4
 
       - name: 🐍 Set up Python
@@ -24,5 +24,5 @@ jobs:
           python -m pip install --upgrade pip
           pip install mkdocs
 
-      - name: 🔨 Build with MkDocs
-        run: mkdocs build
+      - name: 🛠️ Build MkDocs site
+        run: mkdocs build --strict
