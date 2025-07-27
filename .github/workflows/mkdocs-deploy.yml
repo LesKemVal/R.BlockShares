@@ -28,9 +28,9 @@ jobs:
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
 
-      - name: 🚀 Deploy to GitHub Pages with token
+      - name: 🚀 Deploy with MkDocs using fine-grained token
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN_MkDocs: ${{ secrets.GH_TOKEN_MkDocs }}
         run: |
-          git remote set-url origin https://${GH_TOKEN}@github.com/${{ github.repository }}
-          mkdocs gh-deploy --force --remote-name origin --remote-branch gh-pages
+          git remote set-url origin https://${GH_TOKEN_MkDocs}@github.com/${{ github.repository }}
+          mkdocs gh-deploy --force
