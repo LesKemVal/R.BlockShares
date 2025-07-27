@@ -1,0 +1,9 @@
+site_name: R.BlockShares Docs
+nav:
+  - Home: index.md
+  - Basic Usage: basic-usage.md
+  - Subgraph: subgraph.md
+
+docs_dir: docs
+theme:
+  name: mkdocs
