@@ -1,37 +1,37 @@
-# Logs
-logs
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+.env
+
+# MkDocs build directory
+site/
+
+# Logs and reports
 *.log
+*.pid
+*.seed
+*.pid.lock
+report.*.json
+
+# Node-related (if applicable)
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
-# Diagnostic reports
-report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
-
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# Coverage
+# Build artifacts
+build/
+artifacts/
+dist/
+cached/
 coverage/
 lib-cov
 
-# Dependencies and builds
-node_modules/
-build/
-artifacts/
-cached/
-
-# Env files
-.env
-.env.*
-
-# System files
+# IDE/editor settings
+.vscode/
+.idea/
 .DS_Store
-site/
-venv/
-site/
-site_template/
