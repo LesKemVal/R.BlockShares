@@ -23,5 +23,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install mkdocs
 
+      - name: 🔧 Configure Git for GitHub Pages
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+
       - name: 🚀 Deploy with mkdocs
         run: mkdocs gh-deploy --force
