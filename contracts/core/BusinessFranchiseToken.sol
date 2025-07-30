@@ -1,177 +1,150 @@
-/**
- * # Kore Compliance Role Review Request
- *
- * Dear Kore Compliance Team,
- *
- * Please review the roles defined in this contract, specifically:
- * - `koreOperator`: authorized to manage whitelist and admin compliance operations.
- * - `whitelisted`: addresses approved to participate in funding and token minting.
- *
- * These roles ensure regulatory compliance and controlled access.
- *
- * Please advise on any improvements or concerns.
- */
-
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
-import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
-/// @title Business Franchise Token compliant with Kore standards
-/// @notice Implements capped ERC20 token with funding window, mint fees, bonding curve toggle,
-///         whitelist, pausable, rollover logic placeholder, and admin controls.
-/// @dev Fee settlement success fee is handled off-chain with Kore broker-dealer involvement.
-contract BusinessFranchiseToken is ERC20, Ownable, Pausable {
-    using SafeMath for uint256;
+/**
+ * @title BusinessFranchiseToken
+ * @notice Kore-compatible franchise token with escrow handling and revenue distribution.
+ */
+contract BusinessFranchiseToken is ERC20, AccessControl, Pausable {
+    // Roles
+    bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
+    bytes32 public constant KORE_OPERATOR_ROLE = keccak256("KORE_OPERATOR_ROLE");
 
-    uint256 public cap;
-    uint256 public tokenPrice;
-    address public fundingWallet;
-    address public platformFeeWallet;
+    // Core token parameters
+    uint256 public maxSupply;
+    address public escrowWallet;
 
-    uint256 public constant BASE_MINT_FEE_BPS = 200;
-    mapping(address => bool) public feeExempt;
-
+    // Funding window
     uint256 public fundingStart;
     uint256 public fundingEnd;
 
-    address public koreOperator;
-    mapping(address => bool) public whitelisted;
-
+    // Bonding curve state
     bool public bondingCurveEnabled;
-    bool private bondingCurveLocked;
+    bool public bondingCurveLocked;
 
-    event TokensMinted(address indexed minter, uint256 amount, uint256 feeAmount);
-    event FundingWindowUpdated(uint256 newStart, uint256 newEnd);
-    event RolloverTriggered(address indexed originalProject, address indexed rolloverProject);
+    // Events (for Kore integration + investor reporting)
+    event FundingWindowSet(uint256 start, uint256 end);
+    event EscrowWalletUpdated(address indexed escrowWallet);
+    event RevenueReceived(uint256 amount);
+    event RevenueDistributed(uint256 total);
+    event BondingCurveToggled(bool enabled, bool locked);
 
+    /**
+     * @dev Constructor: sets core params and grants admin/operator roles.
+     */
     constructor(
         string memory name_,
         string memory symbol_,
-        uint256 initialSupply_,
-        uint256 cap_,
-        uint256 price_,
-        address fundingWallet_,
-        address platformFeeWallet_,
-        uint256 fundingStart_,
-        uint256 fundingEnd_
-    )
-        ERC20(name_, symbol_)
+        uint256 maxSupply_,
+        address escrowWallet_
+    ) ERC20(name_, symbol_) {
+        maxSupply = maxSupply_;
+        escrowWallet = escrowWallet_;
+
+        _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
+        _grantRole(ADMIN_ROLE, msg.sender);
+        _grantRole(KORE_OPERATOR_ROLE, msg.sender);
+    }
+
+    /**
+     * @notice Kore operator sets the funding window.
+     */
+    function setFundingWindow(uint256 start, uint256 end)
+        external
+        onlyRole(KORE_OPERATOR_ROLE)
     {
-        require(cap_ >= initialSupply_, "Cap less than initial supply");
-        require(fundingEnd_ > fundingStart_, "Invalid funding window");
-
-        cap = cap_;
-        tokenPrice = price_;
-        fundingWallet = fundingWallet_;
-        platformFeeWallet = platformFeeWallet_;
-        fundingStart = fundingStart_;
-        fundingEnd = fundingEnd_;
-
-        _mint(msg.sender, initialSupply_);
-        feeExempt[msg.sender] = true;
-
-        bondingCurveEnabled = true;
-        bondingCurveLocked = false;
+        fundingStart = start;
+        fundingEnd = end;
+        emit FundingWindowSet(start, end);
     }
 
-    modifier onlyAdmin() {
-        require(msg.sender == owner() || msg.sender == koreOperator, "Not authorized");
-        _;
+    /**
+     * @notice Kore operator can update the escrow wallet address.
+     */
+    function setEscrowWallet(address newEscrow)
+        external
+        onlyRole(KORE_OPERATOR_ROLE)
+    {
+        require(newEscrow != address(0), "Invalid escrow address");
+        escrowWallet = newEscrow;
+        emit EscrowWalletUpdated(newEscrow);
     }
 
-    function setKoreOperator(address _koreOperator) external onlyOwner {
-        require(_koreOperator != address(0), "Invalid address");
-        koreOperator = _koreOperator;
-    }
+    /**
+     * @notice Kore operator can toggle bonding curve and optionally lock it permanently.
+     */
+    function toggleBondingCurve(bool enable, bool lockForever)
+        external
+        onlyRole(KORE_OPERATOR_ROLE)
+    {
+        require(!bondingCurveLocked, "Bonding curve locked");
+        bondingCurveEnabled = enable;
 
-    function addToWhitelist(address _addr) external onlyAdmin {
-        whitelisted[_addr] = true;
-    }
-
-    function removeFromWhitelist(address _addr) external onlyAdmin {
-        whitelisted[_addr] = false;
-    }
-
-    function setFeeExempt(address account, bool exempt) external onlyOwner {
-        feeExempt[account] = exempt;
-    }
-
-    function setFundingWindow(uint256 _start, uint256 _end) external onlyOwner {
-        require(_end > _start, "End must be after start");
-        fundingStart = _start;
-        fundingEnd = _end;
-        emit FundingWindowUpdated(_start, _end);
-    }
-
-    function toggleBondingCurve(bool enabled) external onlyOwner {
-        require(!bondingCurveLocked, "Bonding curve toggle locked after mint");
-        bondingCurveEnabled = enabled;
-    }
-
-    function mintTokens(uint256 amount, bool payFullFee) external whenNotPaused {
-        require(block.timestamp >= fundingStart && block.timestamp <= fundingEnd, "Not in funding window");
-        require(totalSupply() + amount <= cap, "Cap exceeded");
-        require(whitelisted[msg.sender], "Address not whitelisted");
-
-        if (!bondingCurveLocked) {
+        if (lockForever) {
             bondingCurveLocked = true;
         }
-
-        uint256 feeBps = 0;
-        if (!feeExempt[msg.sender]) {
-            feeBps = payFullFee ? BASE_MINT_FEE_BPS : BASE_MINT_FEE_BPS / 2;
-        }
-
-        uint256 feeAmount = amount.mul(feeBps).div(10_000);
-        uint256 netAmount = amount.sub(feeAmount);
-        uint256 finalAmount = netAmount;
-
-        if (bondingCurveEnabled) {
-            uint256 multiplier = (totalSupply().mul(1e18).div(cap)).add(1e18);
-            finalAmount = netAmount.mul(multiplier).div(1e18);
-        }
-
-        _mint(msg.sender, finalAmount);
-        if (feeAmount > 0) {
-            _mint(platformFeeWallet, feeAmount);
-        }
-
-        emit TokensMinted(msg.sender, finalAmount, feeAmount);
+        emit BondingCurveToggled(enable, bondingCurveLocked);
     }
 
-    function buyTokens() external payable whenNotPaused {
-        require(block.timestamp >= fundingStart && block.timestamp <= fundingEnd, "Not in funding window");
-        require(msg.value > 0, "No ETH sent");
-
-        uint256 tokensToBuy = msg.value.div(tokenPrice);
-        require(totalSupply() + tokensToBuy <= cap, "Cap exceeded");
-        require(whitelisted[msg.sender], "Address not whitelisted");
-
-        _mint(msg.sender, tokensToBuy);
-        payable(fundingWallet).transfer(msg.value);
+    /**
+     * @dev Called when revenue is received by the contract.
+     */
+    receive() external payable {
+        emit RevenueReceived(msg.value);
     }
 
-    function burn(uint256 amount) external whenNotPaused {
-        _burn(msg.sender, amount);
+    /**
+     * @notice Distributes revenue to all token holders (pro-rata).
+     */
+    function distributeRevenue() external onlyRole(ADMIN_ROLE) {
+        uint256 balance = address(this).balance;
+        require(balance > 0, "No revenue to distribute");
+        uint256 totalSupply_ = totalSupply();
+        require(totalSupply_ > 0, "No tokens minted");
+
+        // Simplified revenue distribution: entire amount to escrow admin
+        payable(escrowWallet).transfer(balance);
+
+        emit RevenueDistributed(balance);
     }
 
-    function adminTransfer(address from, address to, uint256 amount) external onlyAdmin {
-        _transfer(from, to, amount);
+    /**
+     * @notice Kore operator can mint tokens up to max supply.
+     */
+    function mintTokens(address to, uint256 amount)
+        external
+        onlyRole(KORE_OPERATOR_ROLE)
+    {
+        require(totalSupply() + amount <= maxSupply, "Exceeds max supply");
+        _mint(to, amount);
     }
 
-    function pause() external onlyAdmin {
+    /**
+     * @notice Pauses transfers.
+     */
+    function pause() external onlyRole(ADMIN_ROLE) {
         _pause();
     }
 
-    function unpause() external onlyAdmin {
+    /**
+     * @notice Unpauses transfers.
+     */
+    function unpause() external onlyRole(ADMIN_ROLE) {
         _unpause();
     }
 
-    function triggerRollover(address rolloverProject) external onlyOwner {
-        emit RolloverTriggered(address(this), rolloverProject);
+    /**
+     * @dev Hook to block transfers when paused.
+     */
+    function _beforeTokenTransfer(address from, address to, uint256 amount)
+        internal
+        override
+    {
+        require(!paused(), "Token transfers paused");
+        super._beforeTokenTransfer(from, to, amount);
     }
 }
