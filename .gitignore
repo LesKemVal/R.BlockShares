@@ -35,3 +35,5 @@ lib-cov
 .vscode/
 .idea/
 .DS_Store
+cache/
+typechain-types/

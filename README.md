@@ -49,9 +49,10 @@ All regulated functions will be handled by **Kore** and/or their partners, inclu
 
 Implements Kore-compatible logic for issuer-backed token offerings:
 
-- Role-based access control (`owner`, `admin`, `KoreOperator`)  
+- Role-based access control (`owner`, `admin`, **`KoreOperator`**)  
 - Funding window enforcement (`setFundingWindow`)  
 - Whitelist-based minting with fee logic  
+- **Escrow wallet integration** (funds routed through Kore-controlled escrow)  
 - Optional bonding curve toggle (permanently lockable)  
 - Partial/full fee exemptions (issuer-configurable)  
 - Rollover event logic  
