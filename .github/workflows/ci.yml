@@ -6,9 +6,9 @@ on:
   pull_request:
     branches: [main, master]
 
-# Prevent canceling in-progress jobs when new pushes occur
+# Queue workflow runs instead of canceling
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: solidity-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
