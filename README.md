@@ -1,102 +1,114 @@
-# Business Franchise Token (BFTKN)
+# Our Block Nation – Tokenization Platform
 
 [![CI](https://github.com/LesKemVal/R.BlockShares/actions/workflows/ci.yml/badge.svg)](https://github.com/LesKemVal/R.BlockShares/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://leskemval.github.io/R.BlockShares)
 
-This project implements a **Kore-compatible token architecture** for managing **compliant digital securities** and franchise-backed token offerings under **Reg A and Reg D exemptions** in the U.S. private capital markets.
+This repository contains the smart contracts and supporting documentation for **Our Block Nation**, a tokenization platform that leverages Kore’s compliance infrastructure to allow issuers to raise capital compliantly.
 
-BFTKN is not an investment platform. It is a **technical tokenization stack** designed to be integrated with Kore's compliance infrastructure, investor onboarding flows, and Transfer Agent services.
+The project currently includes:
+
+- **BusinessFranchiseToken (BFTKN)** – ERC20-based contract architecture for franchise-backed and issuer-driven offerings (Reg A & Reg D).  
+- **RegCFToken (OBN)** – Revenue-share token designed for the initial Reg CF raise that will fund the build-out of the platform.  
 
 ---
 
-## �� Purpose
+## 🎯 Purpose
 
-This project serves as the foundation for a **white-labeled, self-service platform** enabling franchise owners, founders, and issuers to launch compliant token offerings while relying on **regulated intermediaries via Kore** for:
+Our Block Nation is designed to:
 
-- Transfer agent functions
-- Investor onboarding (KYC/AML, accreditation, escrow)
-- Cap table management
-- Secondary trading integrations
+- Provide small businesses, startups, and diverse founders (including underserved communities) with access to capital.  
+- Allow **retail investors and accredited investors** to invest in everyday commerce.  
+- Build a self-service, white-labeled infrastructure for compliant capital raises with Kore and its partners managing regulated functions.  
+
+The platform combines **technical tokenization** and **Kore’s compliance stack** to handle:
+
+- Transfer agent functions  
+- Investor onboarding (KYC/AML, accreditation, escrow)  
+- Cap table management  
+- Secondary trading integrations  
 
 ---
 
 ## 🔐 Compliance Scope
 
-This repository is intended for **technology demonstration and integration** with Kore's services. It **does not**:
+This repository **does not**:
 
-- Act as a broker-dealer or match investors to issuers
-- Facilitate securities clearing or custody
-- Serve as an MTL-compliant payment platform
-- Collect success fees or investor funds
+- Act as a broker-dealer  
+- Match investors to issuers  
+- Facilitate securities clearing or custody  
+- Collect success fees or investor funds  
 
-All regulated functions will be handled by Kore and/or their partners.
-
----
-
-## ✅ Kore-Compatible Features
-
-- Compliant role-based access control (owner, admin, KoreOperator)
-- Funding window enforcement (`setFundingWindow`)
-- Whitelist-based minting with fee logic
-- Optional bonding curve toggle (permanently lockable)
-- Partial/full fee exemptions (issuer-configurable)
-- Mint/burn support + rollover event logic
-- Pausable contract with admin override
-- Full TypeScript + Hardhat test suite
-- Deployment + integration-ready environment
+All regulated functions will be handled by **Kore** and/or their partners, including ATS integrations for secondary trading.
 
 ---
 
-## 🧪 Test Coverage
+## 📦 Contracts
+
+### 1. BusinessFranchiseToken (BFTKN)
+
+Implements Kore-compatible logic for issuer-backed token offerings:
+
+- Role-based access control (`owner`, `admin`, `KoreOperator`)  
+- Funding window enforcement (`setFundingWindow`)  
+- Whitelist-based minting with fee logic  
+- Optional bonding curve toggle (permanently lockable)  
+- Partial/full fee exemptions (issuer-configurable)  
+- Rollover event logic  
+- Pausable contract with admin override  
+
+📍 **Location:** `contracts/core/BusinessFranchiseToken.sol`
+
+---
+
+### 2. Reg CF Token (OBN)
+
+Implements a revenue-share token for the initial **Reg CF raise**, designed to fund the platform build-out:
+
+- Bonding curve pricing to reward early investors  
+- Auto-locks tokens for 12 months (Reg CF transfer restrictions)  
+- Weekly revenue distribution (pro-rata by token holdings)  
+- Integration point for Kore-managed investor onboarding  
+- Designed to tokenize **mint fees, subscription fees, and secondary transaction fees** from the platform  
+
+📍 **Location:** `contracts/core/reg-cf-token-contract/contracts/RegCFToken.sol`
+
+---
+
+🧪 Testing
+Full Hardhat test coverage is included for both contracts:
 
 ```bash
 npx hardhat test
+```
 
-Project Structure
+🛠 Deployment
+Deploy Reg CF Token to Sepolia:
 
-contracts/core/BusinessFranchiseToken.sol     # Main ERC20 contract with Kore extensions
-scripts/deploy-business.ts                    # Deployment with automated funding window
-scripts/update-funding-window.ts              # Set dynamic funding window post-deploy
-test/test-full.ts                             # Full behavior and compliance test suite
-docs/index.md                                 # GitHub Pages for platform documentation
+```bash
+cd contracts/core/reg-cf-token-contract
+npx hardhat run scripts/deploy-regcf.ts --network sepolia
+```
 
-Deployment Summary
+Deploy BusinessFranchiseToken:
 
-Deployed contract address:
-0x5FbDB2315678afecb367f032d93F642f64180aa3
+```bash
+npx hardhat run scripts/deploy-business.ts --network sepolia
+```
 
-Funding window:
-2025-07-21 to 2025-08-20
+📚 Documentation
+Live documentation: https://leskemval.github.io/R.BlockShares/
 
-Target exemptions:
-
-Reg A Tier 2
-
-Reg D 506(c)
-
-Continuous Integration
-
-CI is powered by GitHub Actions to validate:
-
-TypeScript compilation
-
-Contract compilation
-
-Full Hardhat test run
-
-Git hooks via husky run tests before any commit.
-
-Documentation
-Live documentation (auto-deployed to GitHub Pages):
-https://leskemval.github.io/R.BlockShares/
+Detailed offering decks and models are located in: RegCF_Documents/
 
 ⚠️ Disclaimer
 This repository is for technical demonstration and integration testing.
 It does not constitute legal, financial, or investment advice.
-Final compliance decisions should be reviewed with your own securities counsel.
-This project does not operate as a broker-dealer, transfer agent, or money transmitter.
+Final compliance decisions should be reviewed with securities counsel.
 
 📬 Contact
-For Kore onboarding or UI integration, contact:
-Lester Sawyer – LesKemVal GitHub
+Lester Sawyer
+contact@rblockshareholdings.com
+Our Block Nation – R. Block Share Holdings, LLC
+
+
