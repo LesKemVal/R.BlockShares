@@ -1,0 +1,8 @@
+{
+  "tokenName": "Our Block RevShare Token",
+  "tokenSymbol": "OBN",
+  "basePrice": "1000000000000000000", 
+  "priceSlope": "100000000000000",    
+  "maxSupply": "1000000000000000000000000",
+  "duration": 2592000  
+}

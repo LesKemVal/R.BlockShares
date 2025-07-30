@@ -94,6 +94,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.CreatorRevenueToken__factory>;
     getContractFactory(
+      name: "RegCFToken",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.RegCFToken__factory>;
+    getContractFactory(
       name: "RolloverManager",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.RolloverManager__factory>;
@@ -235,6 +239,11 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.CreatorRevenueToken>;
     getContractAt(
+      name: "RegCFToken",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.RegCFToken>;
+    getContractAt(
       name: "RolloverManager",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -366,6 +375,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.CreatorRevenueToken>;
     deployContract(
+      name: "RegCFToken",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.RegCFToken>;
+    deployContract(
       name: "RolloverManager",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.RolloverManager>;
@@ -506,6 +519,11 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.CreatorRevenueToken>;
+    deployContract(
+      name: "RegCFToken",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.RegCFToken>;
     deployContract(
       name: "RolloverManager",
       args: any[],

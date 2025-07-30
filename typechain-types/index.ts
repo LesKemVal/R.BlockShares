@@ -46,6 +46,8 @@ export type { CreateTokenFactory } from "./contracts/core/CreateTokenFactory";
 export { CreateTokenFactory__factory } from "./factories/contracts/core/CreateTokenFactory__factory";
 export type { CreatorRevenueToken } from "./contracts/core/CreatorRevenueToken";
 export { CreatorRevenueToken__factory } from "./factories/contracts/core/CreatorRevenueToken__factory";
+export type { RegCFToken } from "./contracts/core/reg-cf-token-contract/contracts/RegCFToken";
+export { RegCFToken__factory } from "./factories/contracts/core/reg-cf-token-contract/contracts/RegCFToken__factory";
 export type { RolloverManager } from "./contracts/core/RolloverManager";
 export { RolloverManager__factory } from "./factories/contracts/core/RolloverManager__factory";
 export type { GenericERC20 } from "./contracts/core/token/GenericERC20";
