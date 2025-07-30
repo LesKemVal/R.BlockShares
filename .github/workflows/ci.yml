@@ -1,29 +1,41 @@
-name: Hardhat CI
+name: Solidity
 
 on:
   push:
-    branches: [ main ]
+    branches: [main, master]
   pull_request:
-    branches: [ main ]
+    branches: [main, master]
+
+# Prevent canceling in-progress jobs when new pushes occur
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
-  test:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
       - name: 🧾 Checkout code
         uses: actions/checkout@v3
 
-      - name: 🟨 Use Node.js
+      - name: 🟢 Use Node.js v20
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: 20
 
-      - name: 📦 Install dependencies
-        run: npm ci
+      - name: 📦 Install dependencies (with legacy peer deps)
+        run: npm install --legacy-peer-deps
 
-      - name: 🔨 Compile contracts
+      - name: 🧹 Lint contracts (optional)
+        run: |
+          npm run lint || echo "Linting failed or not configured"
+
+      - name: 🔨 Compile smart contracts
         run: npx hardhat compile
 
-      - name: 🧪 Run tests
+      - name: 🧪 Run full test suite
         run: npx hardhat test
+
+      - name: 📊 Run gas reporting (optional)
+        run: npx hardhat test --grep "gas"
