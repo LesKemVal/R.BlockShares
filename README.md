@@ -77,8 +77,7 @@ npx hardhat test
 
 📚 Documentation
 
-Partner demo (download ZIP):
-R. Block Nation – Partner Docs
+Partner demo (download ZIP): <a href="https://www.dropbox.com/scl/fi/03hu6guqq490wh0w0mloy/site-partner.zip?rlkey=uepzezsqr5300tzhjzbeijbfn&st=mau3jczo&dl=1">R. Block Nation – Partner Docs</a>
 
 Reg CF offering docs: RegCF_Documents/
 SettleMint Docs: https://console.settlemint.com/documentation
