@@ -1,33 +1,25 @@
 # R. Block Nation – Tokenization Platform
 
-![logo](https://github.com/settlemint/solidity-token-erc20-crowdsale/blob/main/OG_Solidity.jpg)
-
-[![CI status](https://github.com/settlemint/solidity-token-erc20-crowdsale/actions/workflows/solidity.yml/badge.svg?event=push&branch=main)](https://github.com/settlemint/solidity-token-erc20-crowdsale/actions?query=branch%3Amain)
-[![License](https://img.shields.io/npm/l/@settlemint/solidity-token-erc20-crowdsale)](https://fsl.software)
-[![npm](https://img.shields.io/npm/dw/@settlemint/solidity-token-erc20-crowdsale)](https://www.npmjs.com/package/@settlemint/solidity-token-erc20-crowdsale)
-[![stars](https://img.shields.io/github/stars/settlemint/solidity-token-erc20-crowdsale)](https://github.com/settlemint/solidity-token-erc20-crowdsale)
+**R. Block Nation** is a tokenization platform that enables compliant capital raises under **Reg CF, Reg A, and Reg D**.
 
 ---
 
 ## 📌 Overview
 
-**R. Block Nation** is a tokenization platform that leverages **KoreConX** compliance infrastructure to allow issuers to raise capital in full compliance with U.S. securities laws.
+We leverage **KoreConX** (and/or licensed partners) for regulated functions and are evaluating **North Capital** as the broker-dealer & escrow partner on a **success-fee** basis (KoreConX remains our fallback).
 
-We are evaluating **North Capital** as the broker-dealer & escrow partner on a **success-fee** basis; **KoreConX** remains our fallback compliance provider.
+The platform is designed for **small businesses, startups, and diverse founders** — including underserved communities — to connect with retail and accredited investors.
 
-The platform is designed for **small businesses, startups, and diverse founders** — including underserved communities — to connect with both retail and accredited investors.
-
-This repository contains the **smart contracts**, **deployment scripts**, and **supporting documentation** for our compliant capital raise ecosystem.
+This repository contains the **smart contracts**, **deployment scripts**, and **supporting documentation** for our compliant raise ecosystem.
 
 ---
 
 ## 🎯 Purpose
 
-R. Block Nation enables:
-- Compliant token offerings under **Reg CF, Reg A, and Reg D**.
-- Retail investor access to everyday commerce.
-- White-labeled, self-service capital raises.
-- Kore or BD-managed regulated functions:
+- Compliant token offerings under **Reg CF, Reg A, Reg D**
+- Retail investor access to everyday commerce
+- White-labeled, self-service issuer flows
+- BD/Kore-managed regulated functions:
   - Transfer agent duties
   - KYC/AML & accreditation
   - Escrow & settlement
@@ -50,43 +42,28 @@ All regulated activities are outsourced to **North Capital**, **KoreConX**, and/
 
 ## 📦 Contracts
 
-### 1. `BusinessFranchiseToken.sol` (BFTKN)
-ERC20-based issuer-backed offering contract with:
+### 1) `BusinessFranchiseToken.sol` (BFTKN)
+ERC-20 issuer-backed offering contract with:
 - Role-based access control (`owner`, `admin`, `KoreOperator`)
 - Funding window enforcement (`setFundingWindow`)
 - Whitelist-based minting + fee logic
-- Escrow integration (Kore-controlled wallet or BD escrow)
+- Escrow wallet integration (BD/Kore)
 - Optional bonding curve pricing (lockable)
-- Fee exemptions (partial or full)
-- Rollover event support
+- Fee exemptions, rollover support
 - Pausable with admin override
 
 📍 **Location:** `contracts/core/BusinessFranchiseToken.sol`  
-Foundry Docs: https://book.getfoundry.sh/  
-Hardhat Docs: https://hardhat.org/hardhat-runner/docs
-
-⚠️ Disclaimer  
-This codebase is for technical demonstration and integration testing only.  
-It is not legal, financial, or investment advice.  
-All offerings should be reviewed by securities counsel before launch.
-
-📬 Contact  
-Owner: Lester Sawyer  
-📧 contact@rblockshareholdings.com  
-🏢 R. Block Share Holdings, LLC
-
-📄 License  
-MIT License – see LICENSE file for details.
+🔗 Foundry Docs: https://book.getfoundry.sh/  
+🔗 Hardhat Docs: https://hardhat.org/hardhat-runner/docs
 
 ---
 
-### 2. `RegCFToken.sol` (OBN)
-Revenue-share token for **initial Reg CF raise**:
+### 2) `RegCFToken.sol` (OBN)
+Revenue-share token for the **initial Reg CF raise**:
 - Bonding curve pricing to reward early investors
-- 12-month lockup (Reg CF transfer restrictions)
-- Weekly revenue distribution (pro-rata by holdings)
-- Kore/BD-managed investor onboarding integration
-- Tokenizes platform mint fees, subscriptions, secondary fees
+- **12-month lockup** (Reg CF transfer restrictions)
+- Weekly revenue distribution (pro-rata)
+- BD/Kore-managed onboarding integration
 
 📍 **Location:** `contracts/core/reg-cf-token-contract/contracts/RegCFToken.sol`
 
@@ -98,9 +75,26 @@ Run full test coverage:
 ```bash
 npx hardhat test
 
-## 📚 Documentation
+📚 Documentation
 
-Partner demo (download ZIP): [R. Block Nation – Partner Docs](https://www.dropbox.com/scl/fi/03hu6guqq490wh0w0mloy/site-partner.zip?rlkey=uepzezsqr5300tzhjzbeijbfn&st=mau3jczo&dl=1)  
-Reg CF offering docs: `RegCF_Documents/`  
+Partner demo (download ZIP):
+R. Block Nation – Partner Docs
+
+Reg CF offering docs: RegCF_Documents/
 SettleMint Docs: https://console.settlemint.com/documentation
+
+📬 Contact
+
+Owner: Lester Sawyer
+📧 contact@rblockshareholdings.com
+🏢 R. Block Share Holdings, LLC
+
+📄 License
+
+MIT License — see LICENSE.
+
+
+Save (**Ctrl+O**, **Enter**) and exit (**Ctrl+X**).  
+Reply **“done”** and I’ll give you the commit & push command next.
+::contentReference[oaicite:0]{index=0}
 
