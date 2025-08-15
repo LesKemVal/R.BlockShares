@@ -12,7 +12,7 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 permissions:
   actions: write
@@ -31,13 +31,14 @@ permissions:
 
 jobs:
   test:
+    name: Build Set
+    runs-on: namespace-profile-btp-scs
+
     services:
       foundry:
         image: ghcr.io/settlemint/btp-anvil-test-node:latest
         ports:
           - "8545:8545"
-    name: Build Set
-    runs-on: namespace-profile-btp-scs
 
     steps:
       - name: Setup 1Password
@@ -67,7 +68,8 @@ jobs:
       - name: Install Foundry
         uses: foundry-rs/foundry-toolchain@v1
 
-      - uses: actions/setup-node@v4
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
         with:
           node-version: 22
 
@@ -85,28 +87,37 @@ jobs:
       - name: Run Forge tests
         run: forge test -vvv
 
-      - name: Run Hardhat test
+      - name: Run Hardhat tests
         run: npx hardhat test
 
       - name: Package version
         id: package-version
+        env:
+          # Use the full SHA from GitHub context; we'll slice it in bash
+          GITHUB_SHA_FULL: ${{ github.sha }}
         run: |
+          set -euo pipefail
           OLD_VERSION=$(jq -r '.version' package.json)
           echo "Old version: $OLD_VERSION"
-          if [[ $GITHUB_REF_SLUG =~ ^v?[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            VERSION=$(echo $GITHUB_REF_SLUG | sed 's/^v//')
+          SHORT_SHA=${GITHUB_SHA_FULL:0:7}
+
+          if [[ "$GITHUB_REF_NAME" =~ ^v?[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            VERSION="${GITHUB_REF_NAME#v}"
             echo "TAG=latest" >> $GITHUB_ENV
-          elif [[ $GITHUB_REF_NAME == "main" ]]; then
-            VERSION="${OLD_VERSION}-main$(echo $GITHUB_SHA_SHORT | sed 's/^v//')"
+          elif [[ "$GITHUB_REF_NAME" == "main" ]]; then
+            VERSION="${OLD_VERSION}-main${SHORT_SHA}"
             echo "TAG=main" >> $GITHUB_ENV
           else
-            VERSION="${OLD_VERSION}-pr$(echo $GITHUB_SHA_SHORT | sed 's/^v//')"
+            VERSION="${OLD_VERSION}-pr${SHORT_SHA}"
             echo "TAG=pr" >> $GITHUB_ENV
           fi
+
           echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "New version: $VERSION"
           jq --arg version "$VERSION" '.version = $version' package.json > package.json.tmp && mv package.json.tmp package.json
 
-      - uses: JS-DevTools/npm-publish@v3
+      - name: Publish to npm
+        uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ env.NPM_TOKEN }}
           package: ./package.json
@@ -115,9 +126,11 @@ jobs:
           strategy: all
           tag: ${{ env.TAG }}
 
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Auto-commit version bump
         if: env.TAG == 'latest'
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: update package versions [skip ci]"
           branch: main
           file_pattern: "package.json README.md"
+
