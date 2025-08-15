@@ -1,115 +1,109 @@
-# Our Block Nation – Tokenization Platform
+# R. Block Nation – Tokenization Platform
 
-[![CI](https://github.com/LesKemVal/R.BlockShares/actions/workflows/ci.yml/badge.svg)](https://github.com/LesKemVal/R.BlockShares/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://leskemval.github.io/R.BlockShares)
+![logo](https://github.com/settlemint/solidity-token-erc20-crowdsale/blob/main/OG_Solidity.jpg)
 
-This repository contains the smart contracts and supporting documentation for **Our Block Nation**, a tokenization platform that leverages Kore’s compliance infrastructure to allow issuers to raise capital compliantly.
+[![CI status](https://github.com/settlemint/solidity-token-erc20-crowdsale/actions/workflows/solidity.yml/badge.svg?event=push&branch=main)](https://github.com/settlemint/solidity-token-erc20-crowdsale/actions?query=branch%3Amain)  
+[![License](https://img.shields.io/npm/l/@settlemint/solidity-token-erc20-crowdsale)](https://fsl.software)  
+[![npm](https://img.shields.io/npm/dw/@settlemint/solidity-token-erc20-crowdsale)](https://www.npmjs.com/package/@settlemint/solidity-token-erc20-crowdsale)  
+[![stars](https://img.shields.io/github/stars/settlemint/solidity-token-erc20-crowdsale)](https://github.com/settlemint/solidity-token-erc20-crowdsale)
 
-The project currently includes:
+---
 
-- **BusinessFranchiseToken (BFTKN)** – ERC20-based contract architecture for franchise-backed and issuer-driven offerings (Reg A & Reg D).  
-- **RegCFToken (OBN)** – Revenue-share token designed for the initial Reg CF raise that will fund the build-out of the platform.  
+## 📌 Overview
+
+**R. Block Nation** is a tokenization platform that leverages **KoreConX** compliance infrastructure to allow issuers to raise capital in full compliance with U.S. securities laws.  
+The platform is designed for **small businesses, startups, and diverse founders** — including underserved communities — to connect with both retail and accredited investors.
+
+This repository contains the **smart contracts**, **deployment scripts**, and **supporting documentation** for our compliant capital raise ecosystem.
 
 ---
 
 ## 🎯 Purpose
 
-Our Block Nation is designed to:
-
-- Provide small businesses, startups, and diverse founders (including underserved communities) with access to capital.  
-- Allow **retail investors and accredited investors** to invest in everyday commerce.  
-- Build a self-service, white-labeled infrastructure for compliant capital raises with Kore and its partners managing regulated functions.  
-
-The platform combines **technical tokenization** and **Kore’s compliance stack** to handle:
-
-- Transfer agent functions  
-- Investor onboarding (KYC/AML, accreditation, escrow)  
-- Cap table management  
-- Secondary trading integrations  
+R. Block Nation enables:
+- Compliant token offerings under **Reg CF, Reg A, and Reg D**.
+- Retail investor access to everyday commerce.
+- White-labeled, self-service capital raises.
+- Kore-managed regulated functions:
+  - Transfer agent duties
+  - KYC/AML & accreditation
+  - Escrow & settlement
+  - Cap table management
+  - Secondary market integrations
 
 ---
 
 ## 🔐 Compliance Scope
 
-This repository **does not**:
+This repository does **not**:
+- Act as a broker-dealer
+- Match investors with issuers
+- Hold investor funds directly
+- Collect success fees
 
-- Act as a broker-dealer  
-- Match investors to issuers  
-- Facilitate securities clearing or custody  
-- Collect success fees or investor funds  
-
-All regulated functions will be handled by **Kore** and/or their partners, including ATS integrations for secondary trading.
+All regulated activities are outsourced to **KoreConX** and/or licensed partners.
 
 ---
 
 ## 📦 Contracts
 
-### 1. BusinessFranchiseToken (BFTKN)
-
-Implements Kore-compatible logic for issuer-backed token offerings:
-
-- Role-based access control (`owner`, `admin`, **`KoreOperator`**)  
-- Funding window enforcement (`setFundingWindow`)  
-- Whitelist-based minting with fee logic  
-- **Escrow wallet integration** (funds routed through Kore-controlled escrow)  
-- Optional bonding curve toggle (permanently lockable)  
-- Partial/full fee exemptions (issuer-configurable)  
-- Rollover event logic  
-- Pausable contract with admin override  
+### 1. `BusinessFranchiseToken.sol` (BFTKN)
+ERC20-based issuer-backed offering contract with:
+- Role-based access control (`owner`, `admin`, `KoreOperator`)
+- Funding window enforcement (`setFundingWindow`)
+- Whitelist-based minting + fee logic
+- Escrow integration (Kore-controlled wallet)
+- Optional bonding curve pricing (lockable)
+- Fee exemptions (partial or full)
+- Rollover event support
+- Pausable with admin override
 
 📍 **Location:** `contracts/core/BusinessFranchiseToken.sol`
 
 ---
 
-### 2. Reg CF Token (OBN)
-
-Implements a revenue-share token for the initial **Reg CF raise**, designed to fund the platform build-out:
-
-- Bonding curve pricing to reward early investors  
-- Auto-locks tokens for 12 months (Reg CF transfer restrictions)  
-- Weekly revenue distribution (pro-rata by token holdings)  
-- Integration point for Kore-managed investor onboarding  
-- Designed to tokenize **mint fees, subscription fees, and secondary transaction fees** from the platform  
+### 2. `RegCFToken.sol` (OBN)
+Revenue-share token for **initial Reg CF raise**:
+- Bonding curve pricing to reward early investors
+- 12-month lockup (Reg CF transfer restrictions)
+- Weekly revenue distribution (pro-rata by holdings)
+- Kore-managed investor onboarding integration
+- Tokenizes platform mint fees, subscriptions, secondary fees
 
 📍 **Location:** `contracts/core/reg-cf-token-contract/contracts/RegCFToken.sol`
 
 ---
 
-🧪 Testing
-Full Hardhat test coverage is included for both contracts:
+## 🧪 Testing
 
+Run full test coverage:
 ```bash
 npx hardhat test
-```
-
-🛠 Deployment
-Deploy Reg CF Token to Sepolia:
-
-```bash
-cd contracts/core/reg-cf-token-contract
-npx hardhat run scripts/deploy-regcf.ts --network sepolia
-```
-
-Deploy BusinessFranchiseToken:
-
-```bash
-npx hardhat run scripts/deploy-business.ts --network sepolia
-```
 
 📚 Documentation
-Live documentation: https://leskemval.github.io/R.BlockShares/
 
-Detailed offering decks and models are located in: RegCF_Documents/
+Live site: R. Block Shares Docs
+
+Reg CF offering docs: RegCF_Documents/
+
+SettleMint Docs: https://console.settlemint.com/documentation
+
+Foundry Docs: https://book.getfoundry.sh/
+
+Hardhat Docs: https://hardhat.org/hardhat-runner/docs
 
 ⚠️ Disclaimer
-This repository is for technical demonstration and integration testing.
-It does not constitute legal, financial, or investment advice.
-Final compliance decisions should be reviewed with securities counsel.
+
+This codebase is for technical demonstration and integration testing only.
+It is not legal, financial, or investment advice.
+All offerings should be reviewed by securities counsel before launch.
 
 📬 Contact
-Lester Sawyer
-contact@rblockshareholdings.com
-Our Block Nation – R. Block Share Holdings, LLC
 
+Owner: Lester Sawyer
+📧 contact@rblockshareholdings.com
+🏢 R. Block Share Holdings, LLC
 
+📄 License
+
+MIT License – see LICENSE file for details.

@@ -1,51 +1,50 @@
-import * as fs from "fs";
-import * as path from "path";
+// contracts/core/reg-cf-token-contract/scripts/deploy-regcf.ts
 import { ethers } from "hardhat";
+import fs from "fs";
+import path from "path";
 
 async function main() {
   const [deployer] = await ethers.getSigners();
-  console.log("🚀 Deploying contract with address:", deployer.address);
+  console.log("🚀 Deploying RegCFToken with account:", deployer.address);
 
-  // === Demo defaults (override with env if you like) ===
-  const NAME        = process.env.CF_NAME        ?? "Our Block RevShare Token";
-  const SYMBOL      = process.env.CF_SYMBOL      ?? "OBN";
-  // Pricing is per whole token (1e18 units) in WEI:
-  const BASE_PRICE  = process.env.CF_BASE_PRICE  ? BigInt(process.env.CF_BASE_PRICE)  : ethers.parseEther("0.01");     // 0.01 ETH per token
-  const PRICE_SLOPE = process.env.CF_PRICE_SLOPE ? BigInt(process.env.CF_PRICE_SLOPE) : ethers.parseEther("0.000001"); // grows slowly
-  const MAX_SUPPLY  = process.env.CF_MAX_SUPPLY  ? BigInt(process.env.CF_MAX_SUPPLY)  : ethers.parseUnits("1000000", 18); // 1,000,000 tokens
-  const DURATION_S  = process.env.CF_DURATION_S  ? Number(process.env.CF_DURATION_S)  : 30 * 24 * 60 * 60; // 30 days
-  const ESCROW_WALLET = process.env.CF_ESCROW_WALLET ?? deployer.address; // <- point to BD/escrow in real deploys
+  // Constructor params
+  const NAME = "Our Block RevShare Token";
+  const SYMBOL = "OBN";
+
+  const BASE_PRICE = ethers.parseEther("0.01");     // 0.01 ETH baseline
+  const PRICE_SLOPE = ethers.parseEther("0.0001");  // small slope per tokensSold*amount/1e18
+  const MAX_SUPPLY = ethers.parseUnits("1000000", 18); // 1,000,000 OBN
+  const DURATION = 30n * 24n * 60n * 60n;              // 30 days in seconds (bigint)
 
   const Factory = await ethers.getContractFactory("RegCFToken");
-  const token = await Factory.deploy(
+
+  // IMPORTANT: only pass the 6 constructor args, no extra deployer/address at the end
+  const regcf = await Factory.deploy(
     NAME,
     SYMBOL,
     BASE_PRICE,
     PRICE_SLOPE,
     MAX_SUPPLY,
-    DURATION_S,
-    ESCROW_WALLET
+    DURATION
   );
-  await token.waitForDeployment();
 
-  const addr = await token.getAddress();
-  console.log(`${NAME} (${SYMBOL}) deployed at: ${addr}`);
+  await regcf.waitForDeployment();
+  console.log(`✅ RegCFToken deployed at: ${regcf.target}`);
 
-  // Write deployments/local.json (append or create)
+  // Write/update deployments/local.json
   const deploymentsDir = path.join(process.cwd(), "deployments");
   const filePath = path.join(deploymentsDir, "local.json");
+  fs.mkdirSync(deploymentsDir, { recursive: true });
+
+  let current: Record<string, any> = {};
   try {
-    if (!fs.existsSync(deploymentsDir)) fs.mkdirSync(deploymentsDir);
-    let current: any = {};
-    if (fs.existsSync(filePath)) {
-      current = JSON.parse(fs.readFileSync(filePath, "utf8"));
-    }
-    current.RegCFToken = addr;
-    fs.writeFileSync(filePath, JSON.stringify(current, null, 2));
-    console.log(`📝 Wrote deployments/local.json:\n${filePath}`);
-  } catch (e) {
-    console.warn("Could not write deployments/local.json:", e);
+    current = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+  } catch {
+    // no file yet
   }
+  current.RegCFToken = regcf.target;
+  fs.writeFileSync(filePath, JSON.stringify(current, null, 2));
+  console.log(`📝 Wrote ${filePath}`);
 }
 
 main().catch((err) => {
