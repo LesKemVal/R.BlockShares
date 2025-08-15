@@ -73,7 +73,8 @@ Revenue-share token for the **initial Reg CF raise**:
 
 Run full test coverage:
 ```bash
-npx hardhat test
+npx hardhat test``` 
+
 
 📚 Documentation
 
