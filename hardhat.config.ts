@@ -2,6 +2,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 import "@nomicfoundation/hardhat-toolbox";
+import "@nomicfoundation/hardhat-verify";
 import "@nomiclabs/hardhat-solhint";
 import type { HardhatUserConfig } from "hardhat/config";
 
@@ -36,9 +37,7 @@ const config: HardhatUserConfig = {
 
   networks: {
     hardhat: {},
-    localhost: {
-      url: "http://127.0.0.1:8545",
-    },
+    localhost: { url: "http://127.0.0.1:8545" },
     sepolia: {
       url: SEPOLIA_RPC_URL, // must be non-empty
       accounts,
@@ -53,12 +52,27 @@ const config: HardhatUserConfig = {
       url: BTP_RPC_URL,
       accounts,
       chainId: 80001, // update if your BTP chain differs
+      // @ts-ignore - allow "auto" for gasPrice if your tooling supports it
       gasPrice: BTP_GAS_PRICE === "auto" ? "auto" : parseInt(BTP_GAS_PRICE),
     },
   },
 
+  // Etherscan API key mapping per network
   etherscan: {
-    apiKey: ETHERSCAN_API_KEY,
+    apiKey: {
+      sepolia: ETHERSCAN_API_KEY,
+    },
+    // (optional) explicit endpoints
+    customChains: [
+      {
+        network: "sepolia",
+        chainId: 11155111,
+        urls: {
+          apiURL: "https://api-sepolia.etherscan.io/api",
+          browserURL: "https://sepolia.etherscan.io",
+        },
+      },
+    ],
   },
 
   paths: {

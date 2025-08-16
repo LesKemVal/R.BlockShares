@@ -37,3 +37,8 @@ lib-cov
 .DS_Store
 cache/
 typechain-types/
+# Build artifacts & local bundles
+site/
+site-partner/
+*.zip
+NC-Brief.pdf

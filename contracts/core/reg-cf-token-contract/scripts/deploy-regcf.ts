@@ -8,7 +8,7 @@ async function main() {
   console.log("🚀 Deploying RegCFToken with account:", deployer.address);
 
   // Constructor params
-  const NAME = "Our Block RevShare Token";
+const NAME = "R. Block Rev Share Token";
   const SYMBOL = "OBN";
 
   const BASE_PRICE = ethers.parseEther("0.01");     // 0.01 ETH baseline

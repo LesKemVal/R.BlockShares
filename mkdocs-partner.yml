@@ -1,14 +1,11 @@
-site_name: R. Block Nation Docs
+site_name: R. Block Nation – Partner Docs
 
 nav:
   - Home: index.md
-  - Basic Usage: basic-usage.md
-  - Subgraph: subgraph.md
   - North Capital Brief: bd-north-capital-brief.md
   - Kore/NC UI Integration: kore-ui-integration.md
+  - Kore Integration Brief: kore-brief.md
 
 docs_dir: docs
-
 theme:
   name: mkdocs
-
