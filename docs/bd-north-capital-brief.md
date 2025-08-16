@@ -9,7 +9,7 @@
 ## Partnership Ask (Success-Fee)
 - **Broker-Dealer + Escrow + Compliance** under a **no upfront / success-fee** model for Reg CF.
 - If successful, extend partnership to **Reg A+** and **Reg D**.
-- We market strongly to diverse founders and communities but **serve all qualified issuers and investors**.
+- Ultimately we will market to non-traditional investors and communities of color, along with all qualified issuers and investors.
 
 ## Why North Capital
 - Single partner for BD, escrow, KYC/AML, and funds flow.
