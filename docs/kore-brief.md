@@ -41,6 +41,8 @@
 - Repo (contracts/tests/CI):  
   <https://github.com/LesKemVal/R.BlockShares>  
 - Partner docs (ZIP):  
+- Partner docs (Transfer): <https://www.dropbox.com/t/lVexN5iA8HqklaJ5>
+
   <https://www.dropbox.com/scl/fi/03hu6guqq490wh0w0mloy/site-partner.zip?rlkey=uepzezsqr5300tzhjzbeijbfn&st=7706jtao&dl=0>
 
 ---
