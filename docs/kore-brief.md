@@ -130,3 +130,5 @@
 
 **Contact:** Lester Sawyer — contact@rblockshareholdings.com
 
+
+**Partner docs (Dropbox Transfer):** <https://www.dropbox.com/t/lVexN5iA8HqklaJ5>

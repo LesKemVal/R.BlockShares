@@ -104,3 +104,5 @@ Reply **“done”** and I’ll give you the commit & push command next.
 ## Partner Demo Transfer
 
 [Partner link](https://www.dropbox.com/t/lVexN5iA8HqklaJ5)
+
+Partner demo (Dropbox Transfer): https://www.dropbox.com/t/lVexN5iA8HqklaJ5
