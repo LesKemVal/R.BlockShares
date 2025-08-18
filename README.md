@@ -78,8 +78,8 @@ npx hardhat test```
 
 📚 Documentation
 
-Partner demo (download ZIP): <a href="https://www.dropbox.com/scl/fi/03hu6guqq490wh0w0mloy/site-partner.zip?rlkey=uepzezsqr5300tzhjzbeijbfn&st=mau3jczo&dl=1">R. Block Nation – Partner Docs</a>
-Partner demo (Transfer): <https://www.dropbox.com/t/lVexN5iA8HqklaJ5>
+Partner demo (download ZIP): <a href="https://www.dropbox.com/scl/fi/03hu6guqq490wh0w0mloy/site-partner.zip?rlkey=uepzezsqr5300tzhjzbeijbfn&dl=1">R. Block Nation – Partner Docs (ZIP)</a>
+Partner docs (Dropbox): <https://www.dropbox.com/scl/fi/03hu6guqq490wh0w0mloy/site-partner.zip?rlkey=uepzezsqr5300tzhjzbeijbfn&dl=1>
 
 
 Reg CF offering docs: RegCF_Documents/
@@ -103,6 +103,5 @@ Reply **“done”** and I’ll give you the commit & push command next.
 
 ## Partner Demo Transfer
 
-[Partner link](https://www.dropbox.com/t/lVexN5iA8HqklaJ5)
+Partner docs (Dropbox): <https://www.dropbox.com/scl/fi/03hu6guqq490wh0w0mloy/site-partner.zip?rlkey=uepzezsqr5300tzhjzbeijbfn&dl=1>
 
-Partner demo (Dropbox Transfer): https://www.dropbox.com/t/lVexN5iA8HqklaJ5
