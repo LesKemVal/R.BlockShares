@@ -31,13 +31,13 @@
 **Chain & Code**  
 - Network: **Ethereum** (Sepolia for demo)  
 - Contracts:  
-  - **OBN (Reg CF)** – revenue-share demo with 12-month lock and pricing curve.  
-  - **BFTKN (A+/D)** – role-gated (Owner/Admin/**KoreOperator**), funding window, whitelist minting, optional bonding curve.  
+  - **OBN (Reg CF)** – equity (Class B) demo with 12-month lock and .  
+  - **BFTKN (A+/D)** – role-gated (Owner/Admin/**KoreOperator**), funding window, whitelist minting, optional .  
 - Tooling: **Hardhat + Foundry**, GitHub Actions CI, MkDocs docs.
 
 **Public references**  
 - Verified OBN (Sepolia):  
-  <https://sepolia.etherscan.io/address/0x4B2f40B9b553E859877f4ECf7bd26ddaB3d218F7#code>  
+  <https://sepolia.etherscan.io/address/0x769780C2BA4492Ac4B0C3C38fbD0B2CB4bb9Ba5f#code>  
 - Repo (contracts/tests/CI):  
   <https://github.com/LesKemVal/R.BlockShares>  
 - Partner docs (ZIP):  
