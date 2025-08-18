@@ -48,7 +48,7 @@ ERC-20 issuer-backed offering contract with:
 - Funding window enforcement (`setFundingWindow`)
 - Whitelist-based minting + fee logic
 - Escrow wallet integration (BD/Kore)
-- Optional bonding curve pricing (lockable)
+- Optional  pricing (lockable)
 - Fee exemptions, rollover support
 - Pausable with admin override
 
@@ -59,10 +59,10 @@ ERC-20 issuer-backed offering contract with:
 ---
 
 ### 2) `RegCFToken.sol` (OBN)
-Revenue-share token for the **initial Reg CF raise**:
-- Bonding curve pricing to reward early investors
+equity (Class B) token for the **initial Reg CF raise**:
+-  pricing to reward early investors
 - **12-month lockup** (Reg CF transfer restrictions)
-- Weekly revenue distribution (pro-rata)
+- 12-month transfer restriction + exemptions (pro-rata)
 - BD/Kore-managed onboarding integration
 
 📍 **Location:** `contracts/core/reg-cf-token-contract/contracts/RegCFToken.sol`

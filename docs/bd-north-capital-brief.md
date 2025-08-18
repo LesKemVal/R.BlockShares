@@ -2,7 +2,7 @@
 
 **Owner:** Lester Sawyer  
 **Company:** R. Block Share Holdings, LLC (owns 100% of R. Block Nation)  
-**Stage:** Reg CF validation using OBN (revenue-share token), scaling to Reg A+ and Reg D
+**Stage:** Reg CF validation using OBN (equity (Class B) token), scaling to Reg A+ and Reg D
 
 ---
 
@@ -20,8 +20,8 @@
 
 ## Tech Readiness Snapshot
 - **Smart Contracts:**  
-  - **Reg CF Token (OBN)** — bonding curve (configurable), 12-month lock, weekly pro-rata revenue distribution, KYC/AML hooks.  
-  - **BusinessFranchiseToken (BFTKN)** — role-based access (Owner/Admin/KoreOperator), funding window enforcement, whitelist minting with fees, escrow wallet integration, optional bonding curve toggle.  
+  - **Reg CF Token (OBN)** —  (configurable), 12-month lock, weekly pro-rata revenue distribution, KYC/AML hooks.  
+  - **BusinessFranchiseToken (BFTKN)** — role-based access (Owner/Admin/KoreOperator), funding window enforcement, whitelist minting with fees, escrow wallet integration, optional  toggle.  
 - **Networks:** Ethereum; **Sepolia** for test deployments.  
 - **Tooling:** Hardhat + Foundry, TypeScript deploy scripts, GitHub Actions CI, MkDocs docs.  
 - **Latest Test Deployments:**  

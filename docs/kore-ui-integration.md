@@ -1,8 +1,8 @@
 # Kore / North Capital UI Integration
 
 **Context:** R. Block Nation integrates regulated onboarding (KYC/AML, escrow, transfer agent) with on-chain offerings:
-- **OBN (Reg CF)** — revenue-share token with 12-month lockup.
-- **BFTKN (Reg A+/D)** — issuer-backed token with funding window + optional bonding curve.
+- **OBN (Reg CF)** — equity (Class B) token with 12-month lockup.
+- **BFTKN (Reg A+/D)** — issuer-backed token with funding window + optional .
 
 We support **two UI paths**:
 

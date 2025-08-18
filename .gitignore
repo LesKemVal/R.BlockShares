@@ -42,3 +42,15 @@ site/
 site-partner/
 *.zip
 NC-Brief.pdf
+# Local deploy artifacts
+deployments/local.json
+deployments/allowlist-verified.*.json
+
+# Cap table exports
+cap-table.*.json
+cap-table.*.csv
+
+# Archived Solidity backups
+archive/
+contracts/core/reg-cf-token-contract/_archive/
+
