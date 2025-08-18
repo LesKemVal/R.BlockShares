@@ -78,6 +78,7 @@ npx hardhat test```
 
 📚 Documentation
 
+Live partner site (web): https://leskemval.github.io/R.BlockShares/
 Partner demo (download ZIP): <a href="https://www.dropbox.com/scl/fi/03hu6guqq490wh0w0mloy/site-partner.zip?rlkey=uepzezsqr5300tzhjzbeijbfn&dl=1">R. Block Nation – Partner Docs (ZIP)</a>
 Partner docs (Dropbox): <https://www.dropbox.com/scl/fi/03hu6guqq490wh0w0mloy/site-partner.zip?rlkey=uepzezsqr5300tzhjzbeijbfn&dl=1>
 
