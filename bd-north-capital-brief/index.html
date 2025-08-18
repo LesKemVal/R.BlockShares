@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Basic Usage - R. Block Nation – Partner Docs</title>
+        <title>North Capital Brief - R. Block Nation – Partner Docs</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
                                 <a href=".." class="nav-link">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../bd-north-capital-brief/" class="nav-link">North Capital Brief</a>
+                                <a href="./" class="nav-link active" aria-current="page">North Capital Brief</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../kore-ui-integration/" class="nav-link">Kore/NC UI Integration</a>
@@ -57,6 +57,16 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a rel="prev" href=".." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../kore-ui-integration/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -75,29 +85,29 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#basic-usage" class="nav-link">Basic Usage</a>
+            <li class="nav-item" data-bs-level="1"><a href="#r-block-nation-north-capital-brief" class="nav-link">R. Block Nation — North Capital Brief</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#build" class="nav-link">Build</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#test" class="nav-link">Test</a>
+            <li class="nav-item" data-bs-level="2"><a href="#partnership-ask-success-fee" class="nav-link">Partnership Ask (Success-Fee)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#format" class="nav-link">Format</a>
+            <li class="nav-item" data-bs-level="2"><a href="#why-north-capital" class="nav-link">Why North Capital</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#deploy-to-local-network" class="nav-link">Deploy to local network</a>
+            <li class="nav-item" data-bs-level="2"><a href="#tech-readiness-snapshot" class="nav-link">Tech Readiness Snapshot</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#deploy-to-platform-network" class="nav-link">Deploy to platform network</a>
+            <li class="nav-item" data-bs-level="2"><a href="#compliance-onboarding-integration-points" class="nav-link">Compliance &amp; Onboarding (Integration Points)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#help" class="nav-link">Help</a>
+            <li class="nav-item" data-bs-level="2"><a href="#success-criteria" class="nav-link">Success Criteria</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#next-steps-proposed" class="nav-link">Next Steps (Proposed)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -108,44 +118,61 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="basic-usage">Basic Usage</h1>
-<h2 id="build">Build</h2>
-<p>You can either use Forge:</p>
-<pre><code class="language-shell">bunx settlemint scs foundry build
-</code></pre>
-<p>or Hardhat:</p>
-<pre><code class="language-shell">bunx settlemint scs hardhat build
-</code></pre>
-<h2 id="test">Test</h2>
-<p>With Forge:</p>
-<pre><code class="language-shell">bunx settlemint scs foundry test
-</code></pre>
-<p>or Hardhat:</p>
-<pre><code class="language-shell">bunx settlemint scs hardhat test
-</code></pre>
-<h2 id="format">Format</h2>
-<p>To format your contracts, run</p>
-<pre><code class="language-shell">bunx settlemint scs foundry format
-</code></pre>
-<h2 id="deploy-to-local-network">Deploy to local network</h2>
-<p>You can deploy your contracts to a local network. First, run</p>
-<pre><code class="language-shell">bunx settlemint scs hardhat network
-</code></pre>
-<p>then:</p>
-<pre><code class="language-shell">bunx settlemint scs hardhat deploy local -m ignition/modules/main.ts
-</code></pre>
-<h2 id="deploy-to-platform-network">Deploy to platform network</h2>
-<p>To deploy your contracts to the platform network, first log in using the SDK:</p>
-<pre><code class="language-shell">bunx settlemint login
-</code></pre>
-<p>You only need to run this <code>login</code> command once.</p>
-<p>Then, you can deploy your contracts using the following command:</p>
-<pre><code class="language-shell">bunx settlemint scs hardhat deploy remote -m ignition/modules/main.ts
-</code></pre>
-<h2 id="help">Help</h2>
-<p>To get info about the tasks, run:</p>
-<pre><code class="language-shell">bunx settlemint scs --help
-</code></pre></div>
+<h1 id="r-block-nation-north-capital-brief">R. Block Nation — North Capital Brief</h1>
+<p><strong>Owner:</strong> Lester Sawyer<br />
+<strong>Company:</strong> R. Block Share Holdings, LLC (owns 100% of R. Block Nation)<br />
+<strong>Stage:</strong> Reg CF validation using OBN (equity (Class B) token), scaling to Reg A+ and Reg D</p>
+<hr />
+<h2 id="partnership-ask-success-fee">Partnership Ask (Success-Fee)</h2>
+<ul>
+<li><strong>Broker-Dealer + Escrow + Compliance</strong> under a <strong>no upfront / success-fee</strong> model for Reg CF.</li>
+<li>If successful, extend partnership to <strong>Reg A+</strong> and <strong>Reg D</strong>.</li>
+<li>Ultimately we will market to non-traditional investors and communities of color, along with all qualified issuers and investors.</li>
+</ul>
+<h2 id="why-north-capital">Why North Capital</h2>
+<ul>
+<li>Single partner for BD, escrow, KYC/AML, and funds flow.</li>
+<li>Reduce friction for issuers and investors with bundled services.</li>
+<li>Keep compliance controls consistent across CF → A+ → D.</li>
+</ul>
+<hr />
+<h2 id="tech-readiness-snapshot">Tech Readiness Snapshot</h2>
+<ul>
+<li><strong>Smart Contracts:</strong>  </li>
+<li><strong>Reg CF Token (OBN)</strong> —  (configurable), 12-month lock, weekly pro-rata revenue distribution, KYC/AML hooks.  </li>
+<li><strong>BusinessFranchiseToken (BFTKN)</strong> — role-based access (Owner/Admin/KoreOperator), funding window enforcement, whitelist minting with fees, escrow wallet integration, optional  toggle.  </li>
+<li><strong>Networks:</strong> Ethereum; <strong>Sepolia</strong> for test deployments.  </li>
+<li><strong>Tooling:</strong> Hardhat + Foundry, TypeScript deploy scripts, GitHub Actions CI, MkDocs docs.  </li>
+<li><strong>Latest Test Deployments:</strong>  </li>
+<li>Reg CF Token (OBN) confirmed at: <code>0x669c723635EF929c8878E5cC0625ac9859a36d03</code> (Sepolia test)  </li>
+<li>Local &amp; CI passing: build + tests + gas report.</li>
+</ul>
+<hr />
+<h2 id="compliance-onboarding-integration-points">Compliance &amp; Onboarding (Integration Points)</h2>
+<ol>
+<li><strong>KYC/AML</strong>: Pre-mint whitelist via BD/Kore endpoints → emits <code>WhitelistUpdated(address, allowed)</code> event.  </li>
+<li><strong>Escrow Flow</strong>: Investor funds → <strong>North Capital escrow</strong> → on settlement, mint/release via admin/KoreOperator.  </li>
+<li><strong>Lockups (Reg CF)</strong>: Auto-enforced 12 months via contract logic; transfer restrictions during lock.  </li>
+<li><strong>Revenue Distribution</strong>: Weekly, pro-rata to holders with on-chain claim or admin sweep (gas-optimized).  </li>
+<li><strong>Reporting</strong>: Webhooks/callbacks emit tx hashes + off-chain receipts for audit and investor comms.</li>
+</ol>
+<hr />
+<h2 id="success-criteria">Success Criteria</h2>
+<ul>
+<li>Close the Reg CF under a success-fee structure.</li>
+<li>Stable investor KYC/AML and escrow flow.</li>
+<li>Repeatable playbook for Reg A+ / Reg D issuers.</li>
+<li>Clear, auditable data across chain + BD systems.</li>
+</ul>
+<hr />
+<h2 id="next-steps-proposed">Next Steps (Proposed)</h2>
+<ol>
+<li><strong>Intro Call (30–45 min):</strong> Confirm success-fee feasibility and bundled scope.  </li>
+<li><strong>Sandbox Integration:</strong> Wire KYC/AML + escrow test flows against Sepolia.  </li>
+<li><strong>Pilot Issuer:</strong> Run one CF pilot end-to-end; measure conversion + ops effort.  </li>
+<li><strong>Scale Plan:</strong> Timeline and SLAs for A+ and D.</li>
+</ol>
+<p><em>Prepared for discussion. Contact: Lester Sawyer — contact@rblockshares.com</em></p></div>
             </div>
         </div>
 

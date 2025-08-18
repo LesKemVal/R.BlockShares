@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Basic Usage - R. Block Nation – Partner Docs</title>
+        <title>Roles & Responsibilities - R. Block Nation – Partner Docs</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -47,7 +47,7 @@
                                 <a href="../kore-brief/" class="nav-link">Kore Integration Brief</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../roles-matrix/" class="nav-link">Roles & Responsibilities</a>
+                                <a href="./" class="nav-link active" aria-current="page">Roles & Responsibilities</a>
                             </li>
                         </ul>
 
@@ -57,6 +57,16 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../kore-brief/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -75,29 +85,21 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#basic-usage" class="nav-link">Basic Usage</a>
+            <li class="nav-item" data-bs-level="1"><a href="#roles-responsibilities-settlemint-kore-funding-portal" class="nav-link">Roles &amp; Responsibilities — SettleMint × Kore × Funding Portal</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#build" class="nav-link">Build</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#test" class="nav-link">Test</a>
+            <li class="nav-item" data-bs-level="2"><a href="#matrix" class="nav-link">Matrix</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#format" class="nav-link">Format</a>
+            <li class="nav-item" data-bs-level="2"><a href="#default-setup-for-r-block-nation-recommended" class="nav-link">Default setup for R. Block Nation (recommended)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#deploy-to-local-network" class="nav-link">Deploy to local network</a>
+            <li class="nav-item" data-bs-level="2"><a href="#alternative-kores-hosted-investor-ui" class="nav-link">Alternative: Kore’s hosted investor UI</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#deploy-to-platform-network" class="nav-link">Deploy to platform network</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#help" class="nav-link">Help</a>
+            <li class="nav-item" data-bs-level="2"><a href="#references" class="nav-link">References</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -108,44 +110,97 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="basic-usage">Basic Usage</h1>
-<h2 id="build">Build</h2>
-<p>You can either use Forge:</p>
-<pre><code class="language-shell">bunx settlemint scs foundry build
-</code></pre>
-<p>or Hardhat:</p>
-<pre><code class="language-shell">bunx settlemint scs hardhat build
-</code></pre>
-<h2 id="test">Test</h2>
-<p>With Forge:</p>
-<pre><code class="language-shell">bunx settlemint scs foundry test
-</code></pre>
-<p>or Hardhat:</p>
-<pre><code class="language-shell">bunx settlemint scs hardhat test
-</code></pre>
-<h2 id="format">Format</h2>
-<p>To format your contracts, run</p>
-<pre><code class="language-shell">bunx settlemint scs foundry format
-</code></pre>
-<h2 id="deploy-to-local-network">Deploy to local network</h2>
-<p>You can deploy your contracts to a local network. First, run</p>
-<pre><code class="language-shell">bunx settlemint scs hardhat network
-</code></pre>
-<p>then:</p>
-<pre><code class="language-shell">bunx settlemint scs hardhat deploy local -m ignition/modules/main.ts
-</code></pre>
-<h2 id="deploy-to-platform-network">Deploy to platform network</h2>
-<p>To deploy your contracts to the platform network, first log in using the SDK:</p>
-<pre><code class="language-shell">bunx settlemint login
-</code></pre>
-<p>You only need to run this <code>login</code> command once.</p>
-<p>Then, you can deploy your contracts using the following command:</p>
-<pre><code class="language-shell">bunx settlemint scs hardhat deploy remote -m ignition/modules/main.ts
-</code></pre>
-<h2 id="help">Help</h2>
-<p>To get info about the tasks, run:</p>
-<pre><code class="language-shell">bunx settlemint scs --help
-</code></pre></div>
+<h1 id="roles-responsibilities-settlemint-kore-funding-portal">Roles &amp; Responsibilities — SettleMint × Kore × Funding Portal</h1>
+<p>This page clarifies who does what across the stack. It also shows the <strong>on-chain pattern</strong> we’ll use regardless of UI choice.</p>
+<hr />
+<h2 id="matrix">Matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th style="text-align: center;">SettleMint</th>
+<th style="text-align: center;">Kore (hosted UI)</th>
+<th style="text-align: center;">Funding Portal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Token issuance / smart contracts</strong></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td><strong>Cap table / Transfer Agent</strong></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td><strong>KYC/AML</strong></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅ <em>(oversight if FP involved)</em></td>
+</tr>
+<tr>
+<td><strong>Form C filing (Reg CF)</strong></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><strong>Escrow / funds flow</strong></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅ <em>(rails)</em></td>
+<td style="text-align: center;">✅ <em>(if FP is intermediary)</em></td>
+</tr>
+<tr>
+<td><strong>UI &amp; investor experience</strong></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">— <em>(FP has its own portal)</em></td>
+</tr>
+<tr>
+<td><strong>Legal compliance (Reg CF)</strong></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>On-chain pattern (both paths):</strong> <strong>Webhooks → backend → contract</strong><br />
+- Allowlist (BFTKN) before mint/transfer<br />
+- Mint/release after <strong>escrow.settled</strong><br />
+- <strong>Reg CF lockups</strong> enforced in contract (OBN)</p>
+</blockquote>
+<hr />
+<h2 id="default-setup-for-r-block-nation-recommended">Default setup for R. Block Nation (recommended)</h2>
+<p>1) <strong>Reg CF (Phase 1)</strong><br />
+   - <strong>Funding Portal</strong> handles <strong>Form C</strong>, escrow, and compliance.<br />
+   - <strong>Kore</strong> optional as <strong>Transfer Agent</strong> and/or KYC/AML if FP supports it.<br />
+   - <strong>SettleMint</strong> powers the token contracts (OBN/BFTKN) and deployment.<br />
+   - <strong>Flow:</strong> FP/Kore webhook → backend → on-chain allowlist + mint → tx-ref logged.</p>
+<p>2) <strong>Reg A+ / Reg D (Phase 2)</strong><br />
+   - Keep <strong>SettleMint</strong> (contracts/deploy).<br />
+   - Use <strong>Kore</strong> (TA + KYC/AML + escrow rails).<br />
+   - Optional embedded UI (SettleMint ATK + Kore APIs) for first-party UX.</p>
+<hr />
+<h2 id="alternative-kores-hosted-investor-ui">Alternative: Kore’s hosted investor UI</h2>
+<p>If you skip FP for CF and use <strong>Kore’s hosted UI</strong>:</p>
+<ul>
+<li>Kore runs the investor onboarding and payments.  </li>
+<li>You deep-link into Kore; upon <strong>kyc.approved</strong> / <strong>escrow.settled</strong>, your backend executes on-chain updates.  </li>
+<li>Legal Form C filing still requires a <strong>registered Reg CF Funding Portal</strong> (or an intermediary arrangement).</li>
+</ul>
+<hr />
+<h2 id="references">References</h2>
+<ul>
+<li><strong>Verified OBN (Sepolia):</strong> <a href="https://sepolia.etherscan.io/address/0x769780C2BA4492Ac4B0C3C38fbD0B2CB4bb9Ba5f#code">https://sepolia.etherscan.io/address/0x769780C2BA4492Ac4B0C3C38fbD0B2CB4bb9Ba5f#code</a>  </li>
+<li><strong>Repo:</strong> <a href="https://github.com/LesKemVal/R.BlockShares">https://github.com/LesKemVal/R.BlockShares</a>  </li>
+<li><strong>Partner ZIP:</strong> <a href="https://www.dropbox.com/scl/fi/03hu6guqq490wh0w0mloy/site-partner.zip?dl=0">https://www.dropbox.com/scl/fi/03hu6guqq490wh0w0mloy/site-partner.zip?dl=0</a>  </li>
+<li><strong>Contact:</strong> Lester Sawyer — contact@rblockshareholdings.com</li>
+</ul></div>
             </div>
         </div>
 

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Kore Integration Brief - R. Block Nation – Partner Docs</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">R. Block Nation – Partner Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../bd-north-capital-brief/" class="nav-link">North Capital Brief</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../kore-ui-integration/" class="nav-link">Kore/NC UI Integration</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Kore Integration Brief</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../roles-matrix/" class="nav-link">Roles & Responsibilities</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../kore-ui-integration/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../roles-matrix/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#r-block-nation-kore-integration-brief" class="nav-link">R. Block Nation — Kore Integration Brief</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-purpose-ask" class="nav-link">1) Purpose &amp; Ask</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-operating-model-ui-options" class="nav-link">2) Operating Model &amp; UI Options</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-technical-snapshot" class="nav-link">3) Technical Snapshot</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-integration-hooks-webhooks-on-chain" class="nav-link">4) Integration Hooks (Webhooks → On-Chain)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-sandbox-plan-cf-demo" class="nav-link">5) Sandbox Plan (CF demo)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#6-data-reporting" class="nav-link">6) Data &amp; Reporting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#7-security-compliance" class="nav-link">7) Security &amp; Compliance</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#8-success-criteria" class="nav-link">8) Success Criteria</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#9-next-steps" class="nav-link">9) Next Steps</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="r-block-nation-kore-integration-brief">R. Block Nation — Kore Integration Brief</h1>
+<p><strong>Owner:</strong> Lester Sawyer (R. Block Share Holdings, LLC)<br />
+<strong>Scope:</strong> Start with <strong>Reg CF</strong> (OBN) under a success-fee model; extend to <strong>Reg A+</strong> and <strong>Reg D</strong> (BFTKN).<br />
+<strong>Goal:</strong> Use <strong>Kore</strong> for KYC/AML, escrow/settlement, and transfer-agent services; keep <strong>SettleMint</strong> as backend; maintain a clean path to an <strong>embedded</strong> first-party UI later.</p>
+<hr />
+<h2 id="1-purpose-ask">1) Purpose &amp; Ask</h2>
+<ul>
+<li><strong>Ask:</strong> Kore sandbox access + API endpoints (KYC/AML, escrow/settlement webhooks, TA updates) to wire a working CF demo.  </li>
+<li><strong>Commercial:</strong> No-upfront, <strong>success-fee</strong> for Reg CF, with path to A+ and D.  </li>
+<li><strong>Timeline:</strong> Sandbox demo → pilot issuer → scale.</li>
+</ul>
+<hr />
+<h2 id="2-operating-model-ui-options">2) Operating Model &amp; UI Options</h2>
+<p><strong>Option A — Hosted (fastest path)</strong><br />
+- Investor onboarding, docs, and payments happen in <strong>Kore’s hosted portal</strong>.<br />
+- Our site deep-links to Kore and <strong>listens for webhooks</strong> to trigger on-chain updates.</p>
+<p><strong>Option B — Embedded (brand-first, later)</strong><br />
+- Use <strong>SettleMint’s Asset Tokenization Kit</strong> (Next.js/Tailwind) and call <strong>Kore APIs</strong> from our backend.<br />
+- Same <strong>webhook → on-chain</strong> pattern; full first-party UX control.</p>
+<hr />
+<h2 id="3-technical-snapshot">3) Technical Snapshot</h2>
+<p><strong>Chain &amp; Code</strong><br />
+- Network: <strong>Ethereum</strong> (Sepolia for demo)<br />
+- Contracts:<br />
+  - <strong>RBCB (Reg CF)</strong> – equity (Class B) demo with 12-month lock and .<br />
+  - <strong>BFTKN (A+/D)</strong> – role-gated (Owner/Admin/<strong>KoreOperator</strong>), funding window, whitelist minting, optional .<br />
+- Tooling: <strong>Hardhat + Foundry</strong>, GitHub Actions CI, MkDocs docs.</p>
+<p><strong>Public references</strong><br />
+- Verified OBN (Sepolia):<br />
+<a href="https://sepolia.etherscan.io/address/0x769780C2BA4492Ac4B0C3C38fbD0B2CB4bb9Ba5f#code">https://sepolia.etherscan.io/address/0x769780C2BA4492Ac4B0C3C38fbD0B2CB4bb9Ba5f#code</a><br />
+- Repo (contracts/tests/CI):<br />
+<a href="https://github.com/LesKemVal/R.BlockShares">https://github.com/LesKemVal/R.BlockShares</a><br />
+- Partner docs (ZIP):<br />
+- Partner docs (Transfer): <a href="https://www.dropbox.com/t/lVexN5iA8HqklaJ5">https://www.dropbox.com/t/lVexN5iA8HqklaJ5</a></p>
+<p><a href="https://www.dropbox.com/scl/fi/03hu6guqq490wh0w0mloy/site-partner.zip?rlkey=uepzezsqr5300tzhjzbeijbfn&amp;st=7706jtao&amp;dl=0">https://www.dropbox.com/scl/fi/03hu6guqq490wh0w0mloy/site-partner.zip?rlkey=uepzezsqr5300tzhjzbeijbfn&amp;st=7706jtao&amp;dl=0</a></p>
+<hr />
+<h2 id="4-integration-hooks-webhooks-on-chain">4) Integration Hooks (Webhooks → On-Chain)</h2>
+<p><strong>Webhook from Kore → our backend</strong></p>
+<pre><code>{
+  "event": "escrow.settled",
+  "investorAddress": "0xINVESTOR...",
+  "amount": "500.00",
+  "currency": "USD",
+  "offchainRef": "kore-escrow-123",
+  "timestamp": "2025-08-20T15:04:05Z"
+}
+</code></pre>
+<p><strong>Our backend → contract actions</strong></p>
+<ul>
+<li>
+<p><strong>Allowlist (BFTKN)</strong> — Mark address approved before mint/transfer:</p>
+<pre><code>event WhitelistUpdated(address indexed investor, bool allowed);
+// function setWhitelisted(address investor, bool allowed) external;
+</code></pre>
+</li>
+<li>
+<p><strong>Mint / Release (BFTKN)</strong> — Operator mints post-settlement or releases escrowed tokens.  </p>
+</li>
+<li><strong>Lockup (Reg CF)</strong> — 12-month transfer lock enforced by the contract.</li>
+</ul>
+<blockquote>
+<p>The demo <strong>OBN</strong> shows end-to-end flow and lockup. For production CF, either <strong>gate buys by allowlist</strong> or use an <strong>operator-mint</strong> pattern after escrow settles.</p>
+</blockquote>
+<hr />
+<h2 id="5-sandbox-plan-cf-demo">5) Sandbox Plan (CF demo)</h2>
+<ol>
+<li><strong>KYC/AML pass</strong> → webhook <code>kyc.approved</code>.  </li>
+<li><strong>Escrow settle</strong> (test funds) → webhook <code>escrow.settled</code> with <code>offchainRef</code>.  </li>
+<li><strong>Backend</strong> performs allowlist/mint and logs a <strong>tx-ref</strong>.  </li>
+<li><strong>Audit log</strong> (CSV/JSON) aligns <code>offchainRef</code> with <code>txHash</code>.</li>
+</ol>
+<p><strong>tx-ref shape</strong></p>
+<pre><code>{
+  "provider": "Kore",
+  "ref": "kore-escrow-123",
+  "event": "mint",
+  "txHash": "0xabc...",
+  "ts": "2025-08-20T15:10:00Z",
+  "investor": "0xINV...",
+  "amount": "500e18"
+}
+</code></pre>
+<hr />
+<h2 id="6-data-reporting">6) Data &amp; Reporting</h2>
+<ul>
+<li><strong>Events:</strong> on-chain (<code>WhitelistUpdated</code>, <code>Transfer</code>, etc.) + off-chain webhooks.  </li>
+<li><strong>Exports:</strong> CSV/JSON for Kore/BD ops and auditors.  </li>
+<li><strong>Traceability:</strong> 1:1 link — <code>offchainRef</code> ↔ <code>txHash</code>.</li>
+</ul>
+<hr />
+<h2 id="7-security-compliance">7) Security &amp; Compliance</h2>
+<ul>
+<li><strong>Keys:</strong> ENV only; no secrets in repo.  </li>
+<li><strong>Separation of duties:</strong> dedicated ops wallet (<strong>ADMIN_ROLE</strong>) is separate from owner.  </li>
+<li><strong>Pauses/Windows:</strong> funding windows and, where applicable, pause/role gates.  </li>
+<li><strong>CF lockup:</strong> 12-month per-address enforcement.</li>
+</ul>
+<hr />
+<h2 id="8-success-criteria">8) Success Criteria</h2>
+<ul>
+<li>CF sandbox completes with <strong>allowlist/mint after escrow settle</strong>.  </li>
+<li>Clean, reproducible <strong>run book</strong> for pilot issuer.  </li>
+<li>Agreement on <strong>Hosted now</strong>; <strong>Embedded</strong> roadmap later.  </li>
+<li><strong>Success-fee</strong> structure confirmed.</li>
+</ul>
+<hr />
+<h2 id="9-next-steps">9) Next Steps</h2>
+<ul>
+<li>Share <strong>Kore sandbox/API</strong> docs (KYC/escrow/TA).  </li>
+<li>Map webhook fields to contract calls (finalize allowlist/mint for CF).  </li>
+<li>Schedule <strong>30-min integration call</strong> → sandbox test.  </li>
+<li>Convert demo to <strong>pilot</strong>.</li>
+</ul>
+<p><strong>Contact:</strong> Lester Sawyer — contact@rblockshareholdings.com</p>
+<p><strong>Partner docs (Dropbox Transfer):</strong> <a href="https://www.dropbox.com/t/lVexN5iA8HqklaJ5">https://www.dropbox.com/t/lVexN5iA8HqklaJ5</a></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

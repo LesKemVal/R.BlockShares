@@ -7,14 +7,14 @@
         
         
         
-        <link rel="shortcut icon" href="/img/favicon.ico">
-        <title>R. Block Nation – Partner Docs</title>
-        <link href="/css/bootstrap.min.css" rel="stylesheet">
-        <link href="/css/fontawesome.min.css" rel="stylesheet">
-        <link href="/css/brands.min.css" rel="stylesheet">
-        <link href="/css/solid.min.css" rel="stylesheet">
-        <link href="/css/v4-font-face.min.css" rel="stylesheet">
-        <link href="/css/base.css" rel="stylesheet">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Kore/NC UI Integration - R. Block Nation – Partner Docs</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
         <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
         <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
@@ -24,7 +24,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="/.">R. Block Nation – Partner Docs</a>
+                <a class="navbar-brand" href="..">R. Block Nation – Partner Docs</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -35,19 +35,19 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href="/." class="nav-link">Home</a>
+                                <a href=".." class="nav-link">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/bd-north-capital-brief/" class="nav-link">North Capital Brief</a>
+                                <a href="../bd-north-capital-brief/" class="nav-link">North Capital Brief</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/kore-ui-integration/" class="nav-link">Kore/NC UI Integration</a>
+                                <a href="./" class="nav-link active" aria-current="page">Kore/NC UI Integration</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/kore-brief/" class="nav-link">Kore Integration Brief</a>
+                                <a href="../kore-brief/" class="nav-link">Kore Integration Brief</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/roles-matrix/" class="nav-link">Roles & Responsibilities</a>
+                                <a href="../roles-matrix/" class="nav-link">Roles & Responsibilities</a>
                             </li>
                         </ul>
 
@@ -57,6 +57,16 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../bd-north-capital-brief/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../kore-brief/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -64,15 +74,63 @@
 
         <div class="container">
             <div class="row">
-
-    <div class="row-fluid">
-      <div id="main-content" class="span12">
-        <h1 id="404-page-not-found" style="text-align: center">404</h1>
-        <p style="text-align: center"><strong>Page not found</strong></p>
-      </div>
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
     </div>
 
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#kore-north-capital-ui-integration" class="nav-link">Kore / North Capital UI Integration</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#option-a-hosted-ui-fastest" class="nav-link">Option A — Hosted UI (fastest)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#option-b-embedded-custom-ui-settlemint-atk" class="nav-link">Option B — Embedded / Custom UI (SettleMint ATK)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#contract-hooks-must-implement" class="nav-link">Contract Hooks (must implement)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
 
+<h1 id="kore-north-capital-ui-integration">Kore / North Capital UI Integration</h1>
+<p><strong>Context:</strong> R. Block Nation integrates regulated onboarding (KYC/AML, escrow, transfer agent) with on-chain offerings:
+- <strong>RBCB (Reg CF)</strong> — equity (Class B) token with 12-month lockup.
+- <strong>BFTKN (Reg A+/D)</strong> — issuer-backed token with funding window + optional .</p>
+<p>We support <strong>two UI paths</strong>:</p>
+<h2 id="option-a-hosted-ui-fastest">Option A — Hosted UI (fastest)</h2>
+<p>Use <strong>Kore (hosted)</strong> or <strong>BD-hosted</strong> portals for investor onboarding + payments. Our site deep-links into their flow, then handles on-chain updates via secure webhooks.</p>
+<p><strong>Pros:</strong> Fastest, lowest ops.<br />
+<strong>Cons:</strong> Less brand control.</p>
+<h2 id="option-b-embedded-custom-ui-settlemint-atk">Option B — Embedded / Custom UI (SettleMint ATK)</h2>
+<p>Customize SettleMint’s Asset Tokenization Kit (Next.js/Tailwind) and call Kore/NC APIs from our backend for KYC/escrow. Full first-party UX, keeps branding.</p>
+<p><strong>Pros:</strong> Brand + extensibility.<br />
+<strong>Cons:</strong> More front-end work.</p>
+<hr />
+<h2 id="contract-hooks-must-implement">Contract Hooks (must implement)</h2>
+<blockquote>
+<p>Apply to <strong>both</strong> OBN and BFTKN; names may differ by contract.</p>
+</blockquote>
+<h3 id="1-kyc-allowlist-pre-mint-pre-transfer">1) KYC Allowlist (pre-mint / pre-transfer)</h3>
+<p>Off-chain KYC approves an address → we mark it on-chain.</p>
+<p>```solidity
+// Event
+event WhitelistUpdated(address indexed investor, bool allowed);</p>
+<p>// Admin function (role-gated: onlyKoreOperator)
+function setWhitelisted(address investor, bool allowed) external;</p></div>
             </div>
         </div>
 
@@ -80,13 +138,13 @@
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="/js/bootstrap.bundle.min.js"></script>
+        <script src="../js/bootstrap.bundle.min.js"></script>
         <script>
-            var base_url = "/",
+            var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="/js/base.js"></script>
-        <script src="/search/main.js"></script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
