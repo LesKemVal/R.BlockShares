@@ -42,7 +42,7 @@
     "@nomicfoundation/hardhat-ignition-viem": "0.15.11",
     "@nomiclabs/hardhat-solhint": "4.0.1",
     "@openzeppelin/subgraphs": "0.1.8-5",
-    "dotenv": "^17.0.0",
+    "dotenv": "^17.2.1",
     "solhint": "5.1.0"
   },
   "overrides": {
@@ -87,7 +87,7 @@
     "solidity-coverage": "^0.8.16",
     "ts-node": "^10.9.2",
     "typechain": "^8.3.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.2"
   },
   "scripts": {
     "prepare": "husky install"
