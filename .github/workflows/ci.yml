@@ -1,41 +1,32 @@
-name: Solidity
+name: CI
 
 on:
   push:
-    branches: [main, master]
+    branches: [ main ]
   pull_request:
-    branches: [main, master]
-
-# Queue workflow runs instead of canceling
-concurrency:
-  group: solidity-${{ github.ref }}
-  cancel-in-progress: false
 
 jobs:
-  build-and-test:
+  build-test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🧾 Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: 🟢 Use Node.js v20
-        uses: actions/setup-node@v3
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
+          cache: npm
 
-      - name: 📦 Install dependencies (with legacy peer deps)
-        run: npm install --legacy-peer-deps
+      - name: Install deps
+        run: npm ci
 
-      - name: 🧹 Lint contracts (optional)
-        run: |
-          npm run lint || echo "Linting failed or not configured"
+      - name: Compile
+        run: npm run compile
 
-      - name: 🔨 Compile smart contracts
-        run: npx hardhat compile
+      - name: Lint Solidity
+        run: npx solhint 'contracts/**/*.sol' || true  # non-blocking; flip to strict by removing '|| true'
 
-      - name: 🧪 Run full test suite
-        run: npx hardhat test
-
-      - name: 📊 Run gas reporting (optional)
-        run: npx hardhat test --grep "gas"
+      - name: Test
+        run: npm test
