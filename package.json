@@ -89,7 +89,13 @@
     "typescript": "^5.9.2"
   },
   "scripts": {
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:sepolia": "hardhat run --network sepolia scripts/deploy-business.ts",
+    "funding:sepolia": "hardhat run --network sepolia scripts/set-funding-window.ts",
+    "pause": "hardhat run --network sepolia scripts/pause-control.ts pause",
+    "unpause": "hardhat run --network sepolia scripts/pause-control.ts unpause"
   },
   "type": "commonjs"
 }
