@@ -78,9 +78,8 @@
     "@types/chai": "^4.3.20",
     "@types/dotenv": "^6.1.1",
     "@types/mocha": "^9.1.1",
-    "@types/node": "^24.0.15",
+    "@types/node": "^24.5.2",
     "chai": "^4.5.0",
-    "ethers": "^6.15.0",
     "hardhat": "^2.26.1",
     "hardhat-gas-reporter": "^2.3.0",
     "husky": "^8.0.0",
@@ -92,5 +91,5 @@
   "scripts": {
     "prepare": "husky install"
   },
-  "type": "module"
+  "type": "commonjs"
 }

@@ -13,21 +13,25 @@ async function main() {
   const MAX_SUPPLY = ethers.parseUnits("5000", 18); // Max 5000 tokens
   const ESCROW_WALLET = process.env.ESCROW_WALLET || deployer.address;
 
-  // Deploy contract (constructor requires name, symbol, maxSupply, escrowWallet)
+  // Normalize escrow address to prevent resolveName errors
+  const escrowWallet = ethers.getAddress(ESCROW_WALLET);
+
+  // Deploy contract
   const Token = await ethers.getContractFactory("BusinessFranchiseToken");
   const contract = await Token.deploy(
     TOKEN_NAME,
     TOKEN_SYMBOL,
     MAX_SUPPLY,
-    ESCROW_WALLET
+    escrowWallet
   );
 
   await contract.waitForDeployment();
 
-  console.log(`✅ Contract deployed at: ${contract.target}`);
+  console.log(`✅ Contract deployed at: ${await contract.getAddress()}`);
 }
 
 main().catch((err) => {
-  console.error("❌ Error deploying contract:", err.message || err);
+  console.error("❌ Error deploying contract:", err);
   process.exit(1);
 });
+
