@@ -95,7 +95,9 @@
     "deploy:sepolia": "hardhat run --network sepolia scripts/deploy-business.ts",
     "funding:sepolia": "hardhat run --network sepolia scripts/set-funding-window.ts",
     "pause": "hardhat run --network sepolia scripts/pause-control.ts pause",
-    "unpause": "hardhat run --network sepolia scripts/pause-control.ts unpause"
+    "unpause": "hardhat run --network sepolia scripts/pause-control.ts unpause",
+    "roles:grant": "hardhat run --network sepolia scripts/grant-roles.ts",
+    "roles:revoke": "hardhat run --network sepolia scripts/revoke-roles.ts"
   },
   "type": "commonjs"
 }
