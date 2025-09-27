@@ -1,0 +1,8 @@
+{
+  "network": "sepolia",
+  "chainId": 11155111,
+  "address": "0x9F2bc4CC40f7e39866F7DcBFe0127E9Dbc925858",
+  "name": "FranchiseToken",
+  "symbol": "FTKN",
+  "explorer": "https://sepolia.etherscan.io/address/0x9F2bc4CC40f7e39866F7DcBFe0127E9Dbc925858"
+}
