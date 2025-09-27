@@ -98,7 +98,8 @@
     "unpause": "hardhat run --network sepolia scripts/pause-control.ts unpause",
     "roles:grant": "hardhat run --network sepolia scripts/grant-roles.ts",
     "roles:revoke": "hardhat run --network sepolia scripts/revoke-roles.ts",
-    "health:sepolia": "hardhat run --network sepolia scripts/health-read.ts"
+    "health:sepolia": "hardhat run --network sepolia scripts/health-read.ts",
+    "verify:sepolia": "hardhat run --network sepolia scripts/verify-current.ts"
   },
   "type": "commonjs"
 }
